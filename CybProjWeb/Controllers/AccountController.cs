@@ -18,13 +18,16 @@ namespace CybProjWeb.Controllers
         private readonly IAccount _account;
         
         private readonly SignInManager<Account> _signInManager;
+        private readonly UserManager<Account> _userManager;
         
 
-        public AccountController(IAccount account, SignInManager<Account> signInManager)
+        public AccountController(IAccount account, SignInManager<Account> signInManager, UserManager<Account> userManager)
         {
             _account = account;
             _signInManager = signInManager;
-            
+            _userManager = userManager;
+
+
         }
         public IActionResult Login()
         {
@@ -51,27 +54,37 @@ namespace CybProjWeb.Controllers
         }
         //////////
 
-        
-        public async Task<IActionResult> SignUp(UserDto u)
-        {
-            if (!ModelState.IsValid)
-            {
-               // Alert("Sign Up Unsuccesful!", NotificationType.error);
-                ModelState.AddModelError("", "UserName/Password is incorrect");
-                return View();
-            }
-            Account user = new Account();
-            user.UserName = u.Username;
-            user.Email = u.Email;
-
+         [HttpPost]
+          public async Task<IActionResult> SignUp(UserDto u)
+          {
+              if (!ModelState.IsValid)
+              {
+                 // Alert("Sign Up Unsuccesful!", NotificationType.error);
+                  ModelState.AddModelError("", "UserName/Password is incorrect");
+                  return View();
+              }
+              Account user = new Account();
+              user.UserName = u.Username;
+              user.Email = u.Email;
+              user.RoleName = u.RoleName;
             var signUp = await _account.Signupp(user, u.Password);
 
-            if (signUp)
-            {
+              if (signUp)
+              {
+               var signUpp = await _userManager.AddToRoleAsync(user, user.RoleName);
+                if (signUpp.Succeeded)
+                {
+                    //Alert("Account Created successfully.", NotificationType.success);
+                    return RedirectToAction("Index", "Home");
+                }
+                return View();
                 
-                //Alert("Account Created successfully.", NotificationType.success);
-                return RedirectToAction("Index", "Home");
-            }
+              }
+              return View();
+          }
+        [HttpGet]
+        public  IActionResult SignUp()
+        {
             return View();
         }
 

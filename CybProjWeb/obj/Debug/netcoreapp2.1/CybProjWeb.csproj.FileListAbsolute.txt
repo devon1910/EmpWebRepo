@@ -45,3 +45,5 @@ C:\Users\Ekpokpobe Davidson\source\repos\CybProjWeb\CybProjWeb\obj\Debug\netcore
 C:\Users\Ekpokpobe Davidson\source\repos\CybProjWeb\CybProjWeb\obj\Debug\netcoreapp2.1\Razor\Views\Account\login.g.cshtml.cs
 C:\Users\Ekpokpobe Davidson\source\repos\CybProjWeb\CybProjWeb\obj\Debug\netcoreapp2.1\Razor\Views\Account\SignUp.g.cshtml.cs
 C:\Users\Ekpokpobe Davidson\source\repos\CybProjWeb\CybProjWeb\obj\Debug\netcoreapp2.1\Razor\Views\Shared\_AccountLayout.g.cshtml.cs
+C:\Users\Ekpokpobe Davidson\source\repos\CybProjWeb\CybProjWeb\obj\Debug\netcoreapp2.1\Razor\Views\Account\Boom.g.cshtml.cs
+C:\Users\Ekpokpobe Davidson\source\repos\CybProjWeb\CybProjWeb\obj\Debug\netcoreapp2.1\Razor\Views\Department\Wood.g.cshtml.cs

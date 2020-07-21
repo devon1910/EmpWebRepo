@@ -20,5 +20,9 @@ namespace CybProjWeb.Models
 
         [DataType(DataType.Text)]
         public string Rolename { get; set; }
+
+        [DataType(DataType.Text)]
+        public int RolenameId { get; set; }
+
     }
 }

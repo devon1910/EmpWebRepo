@@ -14,6 +14,7 @@ namespace CybProjWeb.Entities
         public string MiddleName { get; set; }
         
         public string RoleName { get; set; }
+        
 
         [NotMapped]
         public string FullName

@@ -20,6 +20,7 @@ namespace CybProjWeb.Data
             public virtual DbSet<Salary> Salaries { get; set; }
             public virtual DbSet<State> States { get; set; }
             public virtual DbSet<LGA> LGAs { get; set; }
+            public virtual DbSet<Role> Roles { get; set; }
     }
     
 }

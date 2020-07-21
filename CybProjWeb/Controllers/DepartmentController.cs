@@ -12,7 +12,6 @@ using static CybProjWeb.Enums.Enum;
 
 namespace CybProjWeb.Controllers
 {
-    
     public class DepartmentController : BaseController
     {
         private IDepartment _dept;  

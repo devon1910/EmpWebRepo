@@ -32,15 +32,16 @@ namespace CybProjWeb.Services
             {
                 // check if user exist
                 var checkUser = await _userManager.FindByEmailAsync(loginDetails.Email);
+                
                 if (checkUser != null)
                 {
                     //signin user
                     var signInResult = await _signInManager.PasswordSignInAsync(checkUser, loginDetails.Password, false, false);
+                    
                     // check if signin is successful
                     if (signInResult.Succeeded)
                     {
                         return true;
-
                     }
                 }
                 return false;
@@ -58,10 +59,10 @@ namespace CybProjWeb.Services
                 if (checkmail == null)
                 {
                     var signUpResult = await _userManager.CreateAsync(user, password);
-
+                    //var role = user.RoleName;
+                    
                     if (signUpResult.Succeeded)
                     {
-                        signUpResult = await _userManager.AddToRoleAsync(user,user.RoleName);
                         return true;
                     }
                 }
@@ -71,6 +72,7 @@ namespace CybProjWeb.Services
             {
                 return false;
             }
+
         }
     }
 }
