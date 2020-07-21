@@ -4,12 +4,14 @@ using System.Linq;
 using System.Threading.Tasks;
 using CybProjWeb.Entities;
 using CybProjWeb.Inteface;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using static CybProjWeb.Enums.Enum;
 
 
 namespace CybProjWeb.Controllers
 {
+    //[Authorize(Roles = "Admin")]
     public class GradeController : BaseController
     {
         private IGrade _grade;

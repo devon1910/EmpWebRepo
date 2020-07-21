@@ -1,0 +1,28 @@
+﻿@model CybProjWeb.Entities.Grade
+@{
+    ViewData["Title"] = "Grade";
+}
+<div class="col-sm-12 col-md-6 col-lg-4">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Edit Grade</h4>
+            <form method="post" asp-action="Edit" class="mt-4">
+                <div class="form-group">
+                    <input type="text" class="form-control" id="placeholder"
+                           placeholder="Name" asp-for="GradeName">
+                </div><br />
+                <div class="form-group">
+                    <input type="text" class="form-control" id="placeholder"
+                           placeholder="Level" asp-for="Level">
+                </div><br />
+                <div class="form-group">
+                    <input type="text" class="form-control" id="placeholder"
+                           placeholder="Step" asp-for="Step">
+                </div><br />
+                <button type="submit" class="btn btn-rounded btn-outline-success">Submit</button>
+                <a href="Cancel" type="button" class="btn btn-rounded btn-outline-danger">Cancel</a>
+            </form>
+
+        </div>
+    </div>
+</div>

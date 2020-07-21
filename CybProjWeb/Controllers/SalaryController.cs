@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using CybProjWeb.Entities;
 using CybProjWeb.Inteface;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -11,6 +12,7 @@ using static CybProjWeb.Enums.Enum;
 
 namespace CybProjWeb.Controllers
 {
+    //[Authorize(Roles = "Admin")]
     public class SalaryController : BaseController
     {
         private ISalary _sal;
@@ -53,27 +55,27 @@ namespace CybProjWeb.Controllers
         public async Task<IActionResult> Create()
         {
             var gradeName = await _grade.GetAll();
-            var FacListName = gradeName.Select(g => new SelectListItem()
+            var gradeListName = gradeName.Select(g => new SelectListItem()
             {
                 Value = g.Id.ToString(),
                 Text = g.GradeName
             });
             var gradeLevel = await _grade.GetAll();
-            var FacListLevel = gradeLevel.Select(g => new SelectListItem()
+            var gradeListLevel = gradeLevel.Select(g => new SelectListItem()
             {
                 Value = g.Id.ToString(),
                 Text = g.Level
             });
             var gradeStep = await _grade.GetAll();
-            var FacListStep = gradeStep.Select(g => new SelectListItem()
+            var gradeListStep = gradeStep.Select(g => new SelectListItem()
             {
                 Value = g.Id.ToString(),
                 Text = g.Step
             });
 
-            ViewBag.gradeName = FacListName;
-            ViewBag.gradeLevel = FacListLevel;
-            ViewBag.gradeStep = FacListStep;
+            ViewBag.gradeName = gradeListName;
+            ViewBag.gradeLevel = gradeListLevel;
+            ViewBag.gradeStep = gradeListStep;
 
             return View();
         }

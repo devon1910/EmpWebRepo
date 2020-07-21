@@ -1,0 +1,55 @@
+﻿@model CybProjWeb.Entities.Salary
+@{
+    ViewData["Title"] = "Salary";
+}
+<div class="col-sm-12 col-md-6 col-lg-4">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Setup Salary</h4>
+            <form method="post" asp-action="Create" class="mt-4">
+                <div class="form-group mb-4">
+                    <label for="exampleFormControlSelect1">Grade</label>
+                    <select class="form-control" id="exampleFormControlSelect1" asp-for="GradeId" asp-items="@ViewBag.gradeName">
+                        <option>Choose Option</option>
+                    </select>
+                </div><br />
+                <div class="form-group mb-4">
+                    <label for="exampleFormControlSelect1">Level</label>
+                    <select class="form-control" id="exampleFormControlSelect1" asp-for="GradeId" asp-items="@ViewBag.gradeLevel">
+                        <option>Choose Option</option>
+                    </select>
+                </div><br />
+                <div class="form-group mb-4">
+                    <label for="exampleFormControlSelect1">Step</label>
+                    <select class="form-control" id="exampleFormControlSelect1" asp-for="GradeId" asp-items="@ViewBag.gradeStep">
+                        <option>Choose Option</option>
+                    </select>
+                </div><br />
+                <div class="form-group mb-4">
+                    <label for="exampleFormControlSelect1">Payment Item</label>
+                    <select class="form-control" id="exampleFormControlSelect1" asp-for="PayItem">
+                        <option>Housing</option>
+                        <option>Tax</option>
+                        <option>Basic Salary</option>
+
+                    </select>
+                </div><br />
+                <div class="form-group mb-4">
+                    <label for="exampleFormControlSelect1">Payment Item Type</label>
+                    <select class="form-control" id="exampleFormControlSelect1" asp-for="PayItemType">
+                        <option>Allowance</option>
+                        <option>Deduction</option>
+                        
+                    </select>
+                </div><br />
+                <div class="form-group">
+                    <input type="text" class="form-control" id="placeholder"
+                           placeholder="Amount" asp-for="Amount">
+                </div><br />
+                <button type="submit" class="btn btn-rounded btn-outline-success">Submit</button>
+                <a href="Cancel" type="button" class="btn btn-rounded btn-outline-danger">Cancel</a>
+            </form>
+
+        </div>
+    </div>
+</div>

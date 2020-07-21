@@ -1,0 +1,30 @@
+﻿@model CybProjWeb.Entities.Department
+@{
+    ViewData["Title"] = "Department";
+}
+<div class="col-sm-12 col-md-6 col-lg-4">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Setup Department</h4>
+            <form method="post" asp-action="Create" class="mt-4">
+                <div class="form-group">
+                    <input type="text" class="form-control" id="placeholder"
+                           placeholder="Name" asp-for="DeptName">
+                </div><br />
+                <div class="form-group">
+                    <input type="text" class="form-control" id="placeholder"
+                           placeholder="Code" asp-for="DeptCode">
+                </div><br />
+                <div class="form-group mb-4">
+                    <label for="exampleFormControlSelect1">Grade</label>
+                    <select class="form-control" id="exampleFormControlSelect1" asp-for="FacultyId" asp-items="@ViewBag.fac">
+                        <option>Choose Option</option>
+                    </select>
+                </div><br />
+                <button type="submit" class="btn btn-rounded btn-outline-success">Submit</button>
+                <a href="Cancel" type="button" class="btn btn-rounded btn-outline-danger">Cancel</a>
+            </form>
+
+        </div>
+    </div>
+</div>

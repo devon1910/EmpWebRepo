@@ -1,0 +1,59 @@
+﻿@model IEnumerable<CybProjWeb.Entities.Grade>
+@{
+    ViewData["Title"] = "Grade";
+}
+
+
+<div class="col-12">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Grades</h4>
+        </div>
+        <div class="col-5 align-self-center">
+            <div class="customize-input float-right">
+                <a asp-controller="Grade" asp-action="Create" class="btn btn-rounded btn-info">Setup Department</a>
+            </div>
+        </div><br />
+        <div class="table-responsive">
+            <table class="table">
+                <thead class="thead-light">
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Level</th>
+                        <th scope="col">Step</th>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var g in Model)
+                    {
+                        <tr>
+                            <td scope="row">@g.Id</td>
+                            <td>@g.GradeName</td>
+                            <td>@g.Level</td>
+                            <td>@g.Step</td>
+
+                            <td>
+                                <a asp-controller="Grade" asp-action="Edit" asp-route-id="@g.Id" class="sidebar-link"
+                                   aria-expanded="false">
+                                    <i class="fas fa-edit"></i><span class="hide-menu">
+                                    </span>
+                                </a>
+                            </td>
+                            <td>
+                                <a asp-controller="Grade" asp-action="Delete" asp-route-id="@g.Id" class="sidebar-link"
+                                   aria-expanded="false">
+                                    <i class="fas fa-trash-alt"></i><span class="hide-menu">
+                                    </span>
+                                </a>
+                            </td>
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

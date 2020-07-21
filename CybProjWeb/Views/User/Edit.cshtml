@@ -1,0 +1,67 @@
+﻿@model CybProjWeb.Entities.User
+@{
+    ViewData["Title"] = "Users";
+}
+<div class="col-sm-12 col-md-6 col-lg-4">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Edit User Profile</h4>
+            <form method="post" asp-action="Edit" class="mt-4">
+
+                <div class="form-group">
+                    <input type="text" class="form-control" id="placeholder"
+                           placeholder="FirstName" asp-for="FirstName">
+                </div><br />
+                <div class="form-group">
+                    <input type="text" class="form-control" id="placeholder"
+                           placeholder="LastName" asp-for="LastName">
+                </div><br />
+                <div class="form-group">
+                    <input type="email" class="form-control" id="placeholder"
+                           placeholder="Email" asp-for="Email">
+                </div><br />
+                <div class="form-group">
+                    <input type="text" class="form-control" id="placeholder"
+                           placeholder="State" asp-for="State">
+                </div><br />
+                <div class="form-group">
+                    <input type="text" class="form-control" id="placeholder"
+                           placeholder="LGA" asp-for="LGA">
+                </div><br />
+                <div class="form-group mb-4">
+                    <label for="exampleFormControlSelect1">Department</label>
+                    <select class="form-control" id="exampleFormControlSelect1" asp-for="DeptId" asp-items="@ViewBag.dept">
+                        <option>Choose Option</option>
+                    </select>
+                </div><br />
+                <div class="form-group mb-4">
+                    <label for="exampleFormControlSelect1">Faculty</label>
+                    <select class="form-control" id="exampleFormControlSelect1" asp-for="FacultyId" asp-items="@ViewBag.fac">
+                        <option>Choose Option</option>
+                    </select>
+                </div><br />
+                <div class="form-group mb-4">
+                    <label for="exampleFormControlSelect1">Grade</label>
+                    <select class="form-control" id="exampleFormControlSelect1" asp-for="GradeId" asp-items="@ViewBag.gradeName">
+                        <option>Choose Option</option>
+                    </select>
+                </div><br />
+                <div class="form-group mb-4">
+                    <label for="exampleFormControlSelect1">Grade Level</label>
+                    <select class="form-control" id="exampleFormControlSelect1" asp-for="GradeId" asp-items="@ViewBag.gradeLevel">
+                        <option>Choose Option</option>
+                    </select>
+                </div><br />
+                <div class="form-group mb-4">
+                    <label for="exampleFormControlSelect1">Grade Step</label>
+                    <select class="form-control" id="exampleFormControlSelect1" asp-for="GradeId" asp-items="@ViewBag.gradeStep">
+                        <option>Choose Option</option>
+                    </select>
+                </div><br />
+                <button type="submit" class="btn btn-rounded btn-outline-success">Submit</button>
+                <a href="Cancel" type="button" class="btn btn-rounded btn-outline-danger">Cancel</a>
+            </form>
+
+        </div>
+    </div>
+</div>

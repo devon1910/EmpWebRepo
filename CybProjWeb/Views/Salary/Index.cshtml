@@ -1,0 +1,63 @@
+﻿@model IEnumerable<CybProjWeb.Entities.Salary>
+@{
+    ViewData["Title"] = "Salary";
+}
+
+
+<div class="col-12">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Salary</h4>
+        </div>
+        <div class="col-5 align-self-center">
+            <div class="customize-input float-right">
+                <a asp-controller="Salary" asp-action="Create" class="btn btn-rounded btn-info">Setup Department</a>
+            </div>
+        </div><br />
+        <div class="table-responsive">
+            <table class="table">
+                <thead class="thead-light">
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Grade</th>
+                        <th scope="col">level</th>
+                        <th scope="col">Step</th>
+                        <th scope="col">PaymentItem</th>
+                        <th scope="col">PaymentItem Type</th>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var s in Model)
+                    {
+                        <tr>
+                            <td scope="row">@s.Id</td>
+                            <td>@s.Grade.GradeName</td>
+                            <td>@s.Grade.Level</td>
+                            <td>@s.Grade.Step</td>
+                            <td>@s.PayItem</td>
+                            <td>@s.PayItemType</td>
+
+                            <td>
+                                <a asp-controller="Salary" asp-action="Edit" asp-route-id="@s.Id" class="sidebar-link"
+                                   aria-expanded="false">
+                                    <i class="fas fa-edit"></i><span class="hide-menu">
+                                    </span>
+                                </a>
+                            </td>
+                            <td>
+                                <a asp-controller="Salary" asp-action="Delete" asp-route-id="@s.Id" class="sidebar-link"
+                                   aria-expanded="false">
+                                    <i class="fas fa-trash-alt"></i><span class="hide-menu">
+                                    </span>
+                                </a>
+                            </td>
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

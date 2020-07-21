@@ -1,0 +1,73 @@
+﻿@model IEnumerable<CybProjWeb.Entities.User>
+@{
+    ViewData["Title"] = "User";
+}
+
+
+<div class="col-12">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Users</h4>
+        </div>
+        <div class="col-5 align-self-center">
+            <div class="customize-input float-right">
+                <a asp-controller="User" asp-action="Create" class="btn btn-rounded btn-info">Setup Department</a>
+            </div>
+        </div><br />
+        <div class="table-responsive">
+            <table class="table">
+                <thead class="thead-light">
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">FirstName</th>
+                        <th scope="col">LastName</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">State</th>
+                        <th scope="col">LGA</th>
+                        <th scope="col">Department</th>
+                        <th scope="col">Faculty</th>
+                        <th scope="col">Grade</th>
+                        <th scope="col">Level</th>
+                        <th scope="col">Step</th>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var u in Model)
+                    {
+                        <tr>
+                            <td scope="row">@u.Id</td>
+                            <td>@u.FirstName</td>
+                            <td>@u.LastName</td>
+                            <td>@u.Email</td>
+                            <td>@u.State</td>
+                            <td>@u.LGA</td>
+                            <td>@u.Department.DeptName</td>
+                            <td>@u.Faculty.FacultyName</td>
+                            <td>@u.Grade.GradeName</td>
+                            <td>@u.Grade.Level</td>
+                            <td>@u.Grade.Step</td>
+
+                            <td>
+                                <a asp-controller="User" asp-action="Edit" asp-route-id="@u.Id" class="sidebar-link"
+                                   aria-expanded="false">
+                                    <i class="fas fa-edit"></i><span class="hide-menu">
+                                    </span>
+                                </a>
+                            </td>
+                            <td>
+                                <a asp-controller="User" asp-action="Delete" asp-route-id="@u.Id" class="sidebar-link"
+                                   aria-expanded="false">
+                                    <i class="fas fa-trash-alt"></i><span class="hide-menu">
+                                    </span>
+                                </a>
+                            </td>
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

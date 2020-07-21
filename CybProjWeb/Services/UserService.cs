@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CybProjWeb.Services
 {
-    public class UserService :IUser
+    public class UserService : IUser
     {
         private EmployeeDataContext _context;
         public UserService(EmployeeDataContext context)
@@ -54,7 +54,7 @@ namespace CybProjWeb.Services
 
         public async Task<IEnumerable<User>> GetAll()
         {
-            return await _context.Departments.Include(f => f.Faculty).ToListAsync();
+            return await _context.EmpUsers.Include(d => d.Department).Include(f => f.Faculty).Include(g => g.Grade).ToListAsync();
         }
 
         public async Task<User> GetById(int Id)
@@ -74,7 +74,7 @@ namespace CybProjWeb.Services
                 user.FacultyId = u.FacultyId;
                 user.DeptId = u.DeptId;
                 user.Email = user.Email;
-                user.Country = u.Country;
+                
                 user.State = user.State;
                 user.LGA = user.LGA;
 

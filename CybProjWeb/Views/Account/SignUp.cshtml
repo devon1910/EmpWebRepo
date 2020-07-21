@@ -1,0 +1,54 @@
+﻿@model CybProjWeb.Models.SignupViewModel
+
+@{
+    //ViewData["Title"] = "SignUp";
+    Layout = "~/Views/Shared/_AccountLayout.cshtml";
+}
+
+
+<div class="auth-wrapper d-flex no-block justify-content-center align-items-center position-relative"
+     style="background:url(../assets/images/big/auth-bg.jpg) no-repeat center center;">
+    <div class="auth-box row text-center">
+        <div class="col-lg-7 col-md-5 modal-bg-img" style="background-image: url(../assets/images/big/3.jpg);">
+        </div>
+        <div class="col-lg-5 col-md-7 bg-white">
+            <div class="p-3">
+                <img src="../assets/images/big/icon.png" alt="wrapkit">
+                <h2 class="mt-3 text-center">Sign Up for Free</h2>
+                <form class="mt-4" method="POST" asp-action="SignUp">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="form-group">
+                                <input class="form-control" type="text" placeholder="your name" asp-for="Username">
+                            </div>
+                        </div><br />
+                        <div class="col-lg-12">
+                            <label for="exampleFormControlSelect1"></label>
+                            <select class="form-control" id="exampleFormControlSelect1" asp-for="Rolename">
+                                <option>Choose Role</option>
+                                <option>Admin</option>
+                                <option>User</option>
+                            </select><br />
+                        </div><br />
+                        <div class="col-lg-12">
+                            <div class="form-group">
+                                <input class="form-control" type="email" placeholder="email address" asp-for="Email">
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="form-group">
+                                <input class="form-control" type="password" placeholder="password" asp-for="Password">
+                            </div>
+                        </div>
+                        <div class="col-lg-12 text-center">
+                            <button type="submit" class="btn btn-block btn-dark">Sign Up</button>
+                        </div>
+                        <div class="col-lg-12 text-center mt-5">
+                            Already have an account? <a asp-controller="Account" asp-action="login" class="text-danger">Sign In</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div></div>

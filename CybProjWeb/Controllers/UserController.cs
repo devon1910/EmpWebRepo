@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using CybProjWeb.Data;
 using CybProjWeb.Entities;
 using CybProjWeb.Inteface;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -12,14 +13,21 @@ using static CybProjWeb.Enums.Enum;
 
 namespace CybProjWeb.Controllers
 {
+    //[Authorize]
     public class UserController : BaseController
     {
         private EmployeeDataContext _context;
         private IUser _user;
-        public UserController(IUser user, EmployeeDataContext context)
+        private IDepartment _dept;
+        private IFaculty _fac;
+        private IGrade _grade;
+        public UserController(IUser user, IDepartment dept, IFaculty fac, IGrade grade,EmployeeDataContext context)
         {
+            _dept = dept;
+            _fac = fac;
             _user = user;
             _context = context;
+            _grade = grade;
         }
         public async Task<IActionResult> Index()
         {
@@ -34,7 +42,7 @@ namespace CybProjWeb.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(User u)
         {
-            var createUser = await _user.AddAsync(g);
+            var createUser = await _user.AddAsync(u);
 
             if (createUser)
             {
@@ -47,8 +55,49 @@ namespace CybProjWeb.Controllers
             }
             return View();
         }
-        public IActionResult Create()
+
+        [HttpGet]
+        public async Task<IActionResult> Create()   
         {
+            var dept = await _dept.GetAll();
+            var fac = await _fac.GetAll();
+            var gradeName = await _grade.GetAll();
+            var gradeLevel = await _grade.GetAll();
+            var gradeStep = await _grade.GetAll();
+
+            var deptList = dept.Select(d => new SelectListItem()
+            {
+                Value = d.Id.ToString(),
+                Text =  d.DeptName
+            });
+            var facList = fac.Select(f => new SelectListItem()
+            {
+                Value = f.Id.ToString(),
+                Text = f.FacultyName
+            });
+            var gradeListName = gradeName.Select(g => new SelectListItem()
+            {
+                Value = g.Id.ToString(),
+                Text = g.GradeName
+            });
+            var gradeListLevel = gradeLevel.Select(g => new SelectListItem()
+            {
+                Value = g.Id.ToString(),
+                Text = g.Level
+            });
+            var gradeListStep = gradeStep.Select(g => new SelectListItem()
+            {
+                Value = g.Id.ToString(),
+                Text = g.Step
+            });
+
+            ViewBag.states = _context.States.ToList();
+            ViewBag.gradeName = gradeListName;
+            ViewBag.gradeLevel = gradeListLevel;
+            ViewBag.gradeStep = gradeListStep;
+            ViewBag.dept = deptList;
+            ViewBag.fac = facList;
+           
             return View();
         }
 
@@ -69,9 +118,9 @@ namespace CybProjWeb.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Edit(Grade g)
+        public async Task<IActionResult> Edit(User u)
         {
-            var editUser = await _user.Update(g);
+            var editUser = await _user.Update(u);
             if (editUser && ModelState.IsValid)
             {
                 Alert("User Edited successfully.", NotificationType.success);
@@ -98,10 +147,11 @@ namespace CybProjWeb.Controllers
         {
             return RedirectToAction("Index", "User");
         }
-        public JsonResult getLGAbyId(int Id)
+
+        public JsonResult getLGAbyId(int id)
         {
             List<LGA> list= new List<LGA>();
-            list = _context.LGAs.Where(a => a.States.Id == Id).ToList();
+            list = _context.LGAs.Where(a => a.States.Id == id).ToList();
             list.Insert(0, new LGA { Id = 0, Name = "Please select LGA" });
             return Json(new SelectList(list, "Id", "Name"));
         }

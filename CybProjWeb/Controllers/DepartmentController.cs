@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using CybProjWeb.Entities;
 using CybProjWeb.Inteface;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -11,6 +12,7 @@ using static CybProjWeb.Enums.Enum;
 
 namespace CybProjWeb.Controllers
 {
+    
     public class DepartmentController : BaseController
     {
         private IDepartment _dept;  

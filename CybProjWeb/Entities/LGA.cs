@@ -9,6 +9,6 @@ namespace CybProjWeb.Entities
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public State States { get; set; }
+        public virtual State States { get; set; }
     }
 }

@@ -16,14 +16,15 @@ namespace CybProjWeb.Controllers
     public class AccountController : BaseController
     {
         private readonly IAccount _account;
-        private readonly RoleManager<IdentityRole> _roleManager;
+        
         private readonly SignInManager<Account> _signInManager;
+        
 
-        public AccountController(IAccount account, SignInManager<Account> signInManager,RoleManager<IdentityRole> roleManager)
+        public AccountController(IAccount account, SignInManager<Account> signInManager)
         {
             _account = account;
             _signInManager = signInManager;
-            _roleManager = roleManager;
+            
         }
         public IActionResult Login()
         {
@@ -39,6 +40,7 @@ namespace CybProjWeb.Controllers
                 ModelState.AddModelError("", "UserName/Password is incorrect");
                 return View();
             }
+            var k=login.Email;
             var signin = await _account.LoginIn(login);
             if (signin)
             {
@@ -49,6 +51,7 @@ namespace CybProjWeb.Controllers
         }
         //////////
 
+        
         public async Task<IActionResult> SignUp(UserDto u)
         {
             if (!ModelState.IsValid)
@@ -65,8 +68,9 @@ namespace CybProjWeb.Controllers
 
             if (signUp)
             {
+                
                 //Alert("Account Created successfully.", NotificationType.success);
-                return RedirectToAction("login", "Account");
+                return RedirectToAction("Index", "Home");
             }
             return View();
         }
@@ -74,7 +78,6 @@ namespace CybProjWeb.Controllers
         [HttpGet]
         public async Task<IActionResult> LogOut()
         {
-
             await _signInManager.SignOutAsync();
             return RedirectToAction("Login", "Account");
         }

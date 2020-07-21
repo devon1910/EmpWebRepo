@@ -1,0 +1,56 @@
+﻿@model IEnumerable<CybProjWeb.Entities.Faculty>
+@{
+    ViewData["Title"] = "Faculty";
+}
+
+
+<div class="col-12">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Faculty</h4>
+        </div>
+        <div class="col-5 align-self-center">
+            <div class="customize-input float-right">
+                <a asp-controller="Faculty" asp-action="Create" class="btn btn-rounded btn-info">Setup Department</a>
+            </div>
+        </div><br />
+        <div class="table-responsive">
+            <table class="table">
+                <thead class="thead-light">
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Code</th>
+
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var fac in Model)
+                    {
+                        <tr>
+                            <td scope="row">@fac.Id</td>
+                            <td>@fac.FacultyName</td>
+                            <td>@fac.FacultyCode</td>
+                            <td>
+                                <a asp-controller="Faculty" asp-action="Edit" asp-route-id="@fac.Id" class="sidebar-link"
+                                   aria-expanded="false">
+                                    <i class="fas fa-edit"></i><span class="hide-menu">
+                                    </span>
+                                </a>
+                            </td>
+                            <td>
+                                <a asp-controller="Faculty" asp-action="Delete" asp-route-id="@fac.Id" class="sidebar-link"
+                                   aria-expanded="false">
+                                    <i class="fas fa-trash-alt"></i><span class="hide-menu">
+                                    </span>
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
