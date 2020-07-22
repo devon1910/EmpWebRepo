@@ -14,13 +14,16 @@ namespace CybProjWeb.Entities
         public int Id { get; set; }
         public int FacultyId { get; set; }
         public int GradeId { get; set; }
-        public int DeptId { get; set; }
+        public int DepartmentId { get; set; }
+        public int StateId { get; set; }
+        public int LGAId { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Email { get; set; }
-        //public string Country { get; set; }
-        public string State { get; set; }
-        public string LGA { get; set; } 
+        //public string State { get; set; }
+        //public string LGA { get; set; } 
+        public State State { get; set; }
+        public LGA LGA { get; set; } 
         public Faculty Faculty { get; set; }
         public Department Department { get; set; }
         public Grade Grade { get; set; }

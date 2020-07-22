@@ -14,6 +14,7 @@ using static CybProjWeb.Enums.Enum;
 namespace CybProjWeb.Controllers
 {
     //[Authorize]
+    [Authorize]
     public class UserController : BaseController
     {
         private EmployeeDataContext _context;

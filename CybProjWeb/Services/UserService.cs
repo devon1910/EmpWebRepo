@@ -72,7 +72,7 @@ namespace CybProjWeb.Services
                 user.LastName = u.LastName;
                 user.GradeId = u.GradeId;
                 user.FacultyId = u.FacultyId;
-                user.DeptId = u.DeptId;
+                user.DepartmentId = u.DepartmentId;
                 user.Email = user.Email;
                 
                 user.State = user.State;

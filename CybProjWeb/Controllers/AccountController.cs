@@ -75,7 +75,7 @@ namespace CybProjWeb.Controllers
                 if (signUpp.Succeeded)
                 {
                     //Alert("Account Created successfully.", NotificationType.success);
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("login", "Account");
                 }
                 return View();
                 

@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using static CybProjWeb.Enums.Enum;
 
 namespace CybProjWeb.Controllers
-{
+{   [Authorize]
     public class DepartmentController : BaseController
     {
         private IDepartment _dept;  

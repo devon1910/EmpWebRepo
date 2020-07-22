@@ -75,7 +75,7 @@ using CybProjWeb.Models;
                 ");
             EndContext();
             BeginContext(353, 94, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "d0470c62c9d9499487415c43022fb186", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "13688907f3b3466d915f8d88e9815bd7", async() => {
                 BeginContext(432, 11, true);
                 WriteLiteral("Setup Grade");
                 EndContext();
@@ -165,7 +165,7 @@ using CybProjWeb.Models;
             WriteLiteral("</td>\r\n\r\n                            <td>\r\n                                ");
             EndContext();
             BeginContext(1379, 316, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "8a5b9117c212456ba29187ef9d5836c7", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "a47b977744304ffe9cffe552005b21e2", async() => {
                 BeginContext(1523, 168, true);
                 WriteLiteral("\r\n                                    <i class=\"fas fa-edit\"></i><span class=\"hide-menu\">\r\n                                    </span>\r\n                                ");
                 EndContext();
@@ -204,7 +204,7 @@ using CybProjWeb.Models;
             WriteLiteral("\r\n                            </td>\r\n                            <td>\r\n                                ");
             EndContext();
             BeginContext(1798, 323, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "81fc9de6610644798dc80836cc9d3d68", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "822cf85343754db387c2613039d4f977", async() => {
                 BeginContext(1944, 173, true);
                 WriteLiteral("\r\n                                    <i class=\"fas fa-trash-alt\"></i><span class=\"hide-menu\">\r\n                                    </span>\r\n                                ");
                 EndContext();

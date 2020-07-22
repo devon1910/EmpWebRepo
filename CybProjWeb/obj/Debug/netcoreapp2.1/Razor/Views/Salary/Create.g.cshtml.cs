@@ -71,17 +71,17 @@ using CybProjWeb.Models;
             WriteLiteral("<div class=\"col-sm-12 col-md-6 col-lg-4\">\r\n    <div class=\"card\">\r\n        <div class=\"card-body\">\r\n            <h4 class=\"card-title\">Setup Salary</h4>\r\n            ");
             EndContext();
             BeginContext(243, 2469, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "42d18bcb0806497b9a60186293d3957d", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "9f5f74c3581b43e4bb47cff81480c065", async() => {
                 BeginContext(296, 143, true);
                 WriteLiteral("\r\n                <div class=\"form-group mb-4\">\r\n                    <label for=\"exampleFormControlSelect1\">Grade</label>\r\n                    ");
                 EndContext();
                 BeginContext(439, 196, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("select", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "ca78663327d24931ab8211fd29cb007f", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("select", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "a046b7c8d81446e68f159b863437830c", async() => {
                     BeginContext(548, 26, true);
                     WriteLiteral("\r\n                        ");
                     EndContext();
                     BeginContext(574, 30, false);
-                    __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "3ba1c5b756b84f82a4803236e4370edd", async() => {
+                    __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "f1a39fe6d3dd484da1c8e6ca56e51c02", async() => {
                         BeginContext(582, 13, true);
                         WriteLiteral("Choose Option");
                         EndContext();
@@ -130,12 +130,12 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_SelectTagHelper.Items = ViewBag.gradeName;
                 WriteLiteral("\r\n                </div><br />\r\n                <div class=\"form-group mb-4\">\r\n                    <label for=\"exampleFormControlSelect1\">Level</label>\r\n                    ");
                 EndContext();
                 BeginContext(808, 197, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("select", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "6dd0115cd81442dc89298b1274283eb8", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("select", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "c6b564cd7362426c9475e967241757df", async() => {
                     BeginContext(918, 26, true);
                     WriteLiteral("\r\n                        ");
                     EndContext();
                     BeginContext(944, 30, false);
-                    __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "c2f9486525ad41f181601890da690e1a", async() => {
+                    __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "37dca9b60392457a91210cce5d375760", async() => {
                         BeginContext(952, 13, true);
                         WriteLiteral("Choose Option");
                         EndContext();
@@ -184,12 +184,12 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_SelectTagHelper.Items = ViewBag.gradeLevel
                 WriteLiteral("\r\n                </div><br />\r\n                <div class=\"form-group mb-4\">\r\n                    <label for=\"exampleFormControlSelect1\">Step</label>\r\n                    ");
                 EndContext();
                 BeginContext(1177, 196, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("select", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "a59e3deece1b4876928810c2569de99b", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("select", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "6a138a1be17a4857984668454661b7b7", async() => {
                     BeginContext(1286, 26, true);
                     WriteLiteral("\r\n                        ");
                     EndContext();
                     BeginContext(1312, 30, false);
-                    __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "dde683d8883943ddb4d1182fb0d65e36", async() => {
+                    __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "584361d7c93948208d56c6ce0156975b", async() => {
                         BeginContext(1320, 13, true);
                         WriteLiteral("Choose Option");
                         EndContext();
@@ -238,12 +238,12 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_SelectTagHelper.Items = ViewBag.gradeStep;
                 WriteLiteral("\r\n                </div><br />\r\n                <div class=\"form-group mb-4\">\r\n                    <label for=\"exampleFormControlSelect1\">Payment Item</label>\r\n                    ");
                 EndContext();
                 BeginContext(1553, 262, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("select", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "0b13905b9f514fb392d47b05f9a88489", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("select", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "90e769d044ef40a7aa09ba81e15d33b7", async() => {
                     BeginContext(1631, 26, true);
                     WriteLiteral("\r\n                        ");
                     EndContext();
                     BeginContext(1657, 24, false);
-                    __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "43fed1bd65874aa497f289d6a005912b", async() => {
+                    __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "273ed57adb67410f8bafb742a33453bb", async() => {
                         BeginContext(1665, 7, true);
                         WriteLiteral("Housing");
                         EndContext();
@@ -263,7 +263,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_SelectTagHelper.Items = ViewBag.gradeStep;
                     WriteLiteral("\r\n                        ");
                     EndContext();
                     BeginContext(1707, 20, false);
-                    __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "e5eed18320f44473b7f4cd81c4217c57", async() => {
+                    __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "aed3a2499d3a4d8da44244ad66ecda84", async() => {
                         BeginContext(1715, 3, true);
                         WriteLiteral("Tax");
                         EndContext();
@@ -283,7 +283,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_SelectTagHelper.Items = ViewBag.gradeStep;
                     WriteLiteral("\r\n                        ");
                     EndContext();
                     BeginContext(1753, 29, false);
-                    __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "440f22ccbf3247dc9c1f7a0aa3e8f6b3", async() => {
+                    __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "2cbad4cda8b54507adbda0e4324d3014", async() => {
                         BeginContext(1761, 12, true);
                         WriteLiteral("Basic Salary");
                         EndContext();
@@ -326,12 +326,12 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_SelectTagHelper.For = ModelExpressionProvi
                 WriteLiteral("\r\n                </div><br />\r\n                <div class=\"form-group mb-4\">\r\n                    <label for=\"exampleFormControlSelect1\">Payment Item Type</label>\r\n                    ");
                 EndContext();
                 BeginContext(2000, 243, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("select", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "d97521c6ba3e4ae79211b3130a9d4484", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("select", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "7e3d1c59d8e6432d8d6ed8bf7e03dac1", async() => {
                     BeginContext(2082, 26, true);
                     WriteLiteral("\r\n                        ");
                     EndContext();
                     BeginContext(2108, 26, false);
-                    __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "86ffde65f788472284499a92e32fb0e7", async() => {
+                    __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "249c69be43234616bd69dd921ae21853", async() => {
                         BeginContext(2116, 9, true);
                         WriteLiteral("Allowance");
                         EndContext();
@@ -351,7 +351,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_SelectTagHelper.For = ModelExpressionProvi
                     WriteLiteral("\r\n                        ");
                     EndContext();
                     BeginContext(2160, 26, false);
-                    __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "01e20a94b01243bfb4e14a6c620c6ab4", async() => {
+                    __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "cb025d333a9043bebef9503c50c783a9", async() => {
                         BeginContext(2168, 9, true);
                         WriteLiteral("Deduction");
                         EndContext();
@@ -394,7 +394,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_SelectTagHelper.For = ModelExpressionProvi
                 WriteLiteral("\r\n                </div><br />\r\n                <div class=\"form-group\">\r\n                    ");
                 EndContext();
                 BeginContext(2337, 123, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("input", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "b2acf24957b14083a43d2989c732fa0f", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("input", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "6162177520bb41ae8466539fd3dfd2e6", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.InputTagHelper>();
