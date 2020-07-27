@@ -18,11 +18,11 @@ namespace CybProjWeb.Models
         [DataType(DataType.Text)]
         public string Username { get; set; }
 
-        [DataType(DataType.Text)]
-        public string Rolename { get; set; }
+        //[DataType(DataType.Text)]
+        //public string RoleName { get; set; }
 
         [DataType(DataType.Text)]
-        public int RolenameId { get; set; }
+        public string  RoleId { get; set; }
 
     }
 }

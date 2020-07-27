@@ -31,7 +31,6 @@
                         <option>Housing</option>
                         <option>Tax</option>
                         <option>Basic Salary</option>
-
                     </select>
                 </div><br />
                 <div class="form-group mb-4">
@@ -39,12 +38,18 @@
                     <select class="form-control" id="exampleFormControlSelect1" asp-for="PayItemType">
                         <option>Allowance</option>
                         <option>Deduction</option>
-                        
+
                     </select>
                 </div><br />
-                <div class="form-group">
-                    <input type="text" class="form-control" id="placeholder"
-                           placeholder="Amount" asp-for="Amount">
+                <div class="form-group mb-4">
+                    <label for="exampleFormControlSelect1">Amount</label>
+                    <select class="form-control" id="exampleFormControlSelect1" asp-for="Amount">
+                        <option>100000</option>
+                        <option>200000</option>
+                        <option>300000</option>
+                        <option>400000</option>
+                        <option>500000</option>
+                    </select>
                 </div><br />
                 <button type="submit" class="btn btn-rounded btn-outline-success">Submit</button>
                 <a href="Cancel" type="button" class="btn btn-rounded btn-outline-danger">Cancel</a>

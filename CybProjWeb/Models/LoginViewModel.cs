@@ -13,7 +13,7 @@ namespace CybProjWeb.Models
         public string Email { get; set; }
 
         [DataType(DataType.Text)]
-        public string Rolename { get; set; }
+        public string RoleName { get; set; }
 
         [DataType(DataType.Password)]
         public string Password { get; set; }

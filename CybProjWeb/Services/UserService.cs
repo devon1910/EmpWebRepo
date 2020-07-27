@@ -54,7 +54,8 @@ namespace CybProjWeb.Services
 
         public async Task<IEnumerable<User>> GetAll()
         {
-            return await _context.EmpUsers.Include(d => d.Department).Include(f => f.Faculty).Include(g => g.Grade).ToListAsync();
+            return await _context.EmpUsers.Include(d => d.Department).Include(g => g.Grade).ToListAsync();
+
         }
 
         public async Task<User> GetById(int Id)
@@ -71,12 +72,12 @@ namespace CybProjWeb.Services
                 user.FirstName = u.FirstName;
                 user.LastName = u.LastName;
                 user.GradeId = u.GradeId;
-                user.FacultyId = u.FacultyId;
+               // user.FacultyId = u.FacultyId;
                 user.DepartmentId = u.DepartmentId;
                 user.Email = user.Email;
                 
-                user.State = user.State;
-                user.LGA = user.LGA;
+                user.States = user.States;
+                user.LGAs = user.LGAs;
 
                 await _context.SaveChangesAsync();
                 return true;

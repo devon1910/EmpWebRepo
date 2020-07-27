@@ -10,14 +10,14 @@ using static CybProjWeb.Enums.Enum;
 
 namespace CybProjWeb.Controllers
 {
-    // [Authorize(Roles = "Admin")]
-    [Authorize]
+    [Authorize(Roles = "Admin")]
     public class FacultyController : BaseController
     {
         private IFaculty _faculty;
         public FacultyController(IFaculty fac)
         {
             _faculty = fac;
+           
         }
         public async Task<IActionResult> Index()
         {

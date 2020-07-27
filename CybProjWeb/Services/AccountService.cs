@@ -14,16 +14,16 @@ namespace CybProjWeb.Services
     {
         private readonly SignInManager<Account> _signInManager;
         private readonly UserManager<Account> _userManager;
-        //  private readonly RoleManager<Role> _roleManager, RoleManager<Role> roleManager,;
+       
         private IConfiguration _config;
         public AccountService(SignInManager<Account> signInManager,
                                 UserManager<Account> userManager,
                                 
-                                 IConfiguration config)
+        IConfiguration config)
         {
             _signInManager = signInManager;
             _userManager = userManager;
-          //  _roleManager = roleManager;
+           
             _config = config;
         }
         public async Task<bool> LoginIn(LoginViewModel loginDetails)
@@ -37,6 +37,7 @@ namespace CybProjWeb.Services
                 {
                     //signin user
                     var signInResult = await _signInManager.PasswordSignInAsync(checkUser, loginDetails.Password, false, false);
+                    //var checkRole= await _roleManager.FindByNameAsync
                     
                     // check if signin is successful
                     if (signInResult.Succeeded)
@@ -56,10 +57,12 @@ namespace CybProjWeb.Services
             try
             {
                 var checkmail = await _userManager.FindByEmailAsync(user.Email);
+                
                 if (checkmail == null)
                 {
                     var signUpResult = await _userManager.CreateAsync(user, password);
                     //var role = user.RoleName;
+                    //var newRole = await _roleManager.CreateAsync(user.Role);
                     
                     if (signUpResult.Succeeded)
                     {
@@ -74,5 +77,7 @@ namespace CybProjWeb.Services
             }
 
         }
+        
+
     }
 }

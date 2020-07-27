@@ -22,11 +22,11 @@
                 </div><br />
                 <div class="form-group">
                     <input type="text" class="form-control" id="placeholder"
-                           placeholder="State" asp-for="State">
+                           placeholder="State" asp-for="States">
                 </div><br />
                 <div class="form-group">
                     <input type="text" class="form-control" id="placeholder"
-                           placeholder="LGA" asp-for="LGA">
+                           placeholder="LGA" asp-for="LGAs">
                 </div><br />
                 <div class="form-group mb-4">
                     <label for="exampleFormControlSelect1">Department</label>
@@ -36,7 +36,7 @@
                 </div><br />
                 <div class="form-group mb-4">
                     <label for="exampleFormControlSelect1">Faculty</label>
-                    <select class="form-control" id="exampleFormControlSelect1" asp-for="FacultyId" asp-items="@ViewBag.fac">
+                    <select class="form-control" id="exampleFormControlSelect1" asp-for="DepartmentId" asp-items="@ViewBag.fac">
                         <option>Choose Option</option>
                     </select>
                 </div><br />

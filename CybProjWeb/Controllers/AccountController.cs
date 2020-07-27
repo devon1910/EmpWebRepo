@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using CybProjWeb.Data;
 using CybProjWeb.Dtos;
 using CybProjWeb.Entities;
 using CybProjWeb.Inteface;
@@ -15,22 +16,26 @@ namespace CybProjWeb.Controllers
 {
     public class AccountController : BaseController
     {
+        private EmployeeDataContext _context;
         private readonly IAccount _account;
         
         private readonly SignInManager<Account> _signInManager;
         private readonly UserManager<Account> _userManager;
         
 
-        public AccountController(IAccount account, SignInManager<Account> signInManager, UserManager<Account> userManager)
+        public AccountController(IAccount account, SignInManager<Account> signInManager,UserManager<Account> userManager, EmployeeDataContext context)
         {
+           // _roleManager = roleManager;
             _account = account;
             _signInManager = signInManager;
             _userManager = userManager;
+            _context= context;
 
 
         }
         public IActionResult Login()
         {
+            ViewBag.role = _context.Roless.ToList();
             return View();
         }
 
@@ -43,16 +48,24 @@ namespace CybProjWeb.Controllers
                 ModelState.AddModelError("", "UserName/Password is incorrect");
                 return View();
             }
-            var k=login.Email;
+            Account user = new Account();
+           
+           // user.UserName = login.;
+            user.Email = login.Email;
+           // user.RoleName = login.RoleName;
+
+
             var signin = await _account.LoginIn(login);
+            
             if (signin)
             {
+                
                // Alert("Login successful.", NotificationType.success);
                 return RedirectToAction("Index", "Home");
             }
             return View();
         }
-        //////////
+        
 
          [HttpPost]
           public async Task<IActionResult> SignUp(UserDto u)
@@ -64,27 +77,25 @@ namespace CybProjWeb.Controllers
                   return View();
               }
               Account user = new Account();
+              
               user.UserName = u.Username;
               user.Email = u.Email;
-              user.RoleName = u.RoleName;
+            //if User SignUp is successful
             var signUp = await _account.Signupp(user, u.Password);
 
               if (signUp)
               {
-               var signUpp = await _userManager.AddToRoleAsync(user, user.RoleName);
-                if (signUpp.Succeeded)
-                {
+              
                     //Alert("Account Created successfully.", NotificationType.success);
                     return RedirectToAction("login", "Account");
-                }
-                return View();
-                
               }
               return View();
           }
+
         [HttpGet]
         public  IActionResult SignUp()
         {
+            ViewBag.role = _context.Roless.ToList();
             return View();
         }
 
@@ -94,7 +105,7 @@ namespace CybProjWeb.Controllers
             await _signInManager.SignOutAsync();
             return RedirectToAction("Login", "Account");
         }
-
+        
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });

@@ -5,12 +5,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Migrations\20200722170049_Seventh.cs" />
-    <Compile Remove="Migrations\20200722170049_Seventh.Designer.cs" />
-    <Compile Remove="Migrations\20200722172807_Eighth.cs" />
-    <Compile Remove="Migrations\20200722172807_Eighth.Designer.cs" />
-    <Compile Remove="Migrations\20200722173204_Eighth.cs" />
-    <Compile Remove="Migrations\20200722173204_Eighth.Designer.cs" />
+    <Compile Remove="Migrations\20200724042258_Seventh.cs" />
+    <Compile Remove="Migrations\20200724042258_Seventh.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

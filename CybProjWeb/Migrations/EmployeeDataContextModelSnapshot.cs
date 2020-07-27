@@ -56,8 +56,6 @@ namespace CybProjWeb.Migrations
 
                     b.Property<bool>("PhoneNumberConfirmed");
 
-                    b.Property<string>("RoleName");
-
                     b.Property<string>("SecurityStamp");
 
                     b.Property<bool>("TwoFactorEnabled");
@@ -143,11 +141,11 @@ namespace CybProjWeb.Migrations
 
                     b.Property<string>("Name");
 
-                    b.Property<int?>("StatesId");
+                    b.Property<int?>("StateId");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("StatesId");
+                    b.HasIndex("StateId");
 
                     b.ToTable("LGAs");
                 });
@@ -165,8 +163,6 @@ namespace CybProjWeb.Migrations
 
                     b.Property<string>("NormalizedName")
                         .HasMaxLength(256);
-
-                    b.Property<string>("RoleName");
 
                     b.HasKey("Id");
 
@@ -218,25 +214,25 @@ namespace CybProjWeb.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("Country");
+
                     b.Property<DateTime>("DateCreated");
 
-                    b.Property<int?>("DepartmentId");
-
-                    b.Property<int>("DeptId");
+                    b.Property<int>("DepartmentId");
 
                     b.Property<string>("Email");
 
-                    b.Property<int>("FacultyId");
+                    b.Property<int?>("FacultyId");
 
                     b.Property<string>("FirstName");
 
                     b.Property<int>("GradeId");
 
-                    b.Property<string>("LGA");
+                    b.Property<string>("LGAs");
 
                     b.Property<string>("LastName");
 
-                    b.Property<string>("State");
+                    b.Property<string>("States");
 
                     b.HasKey("Id");
 
@@ -345,9 +341,9 @@ namespace CybProjWeb.Migrations
 
             modelBuilder.Entity("CybProjWeb.Entities.LGA", b =>
                 {
-                    b.HasOne("CybProjWeb.Entities.State", "States")
+                    b.HasOne("CybProjWeb.Entities.State", "State")
                         .WithMany("LGA")
-                        .HasForeignKey("StatesId");
+                        .HasForeignKey("StateId");
                 });
 
             modelBuilder.Entity("CybProjWeb.Entities.Salary", b =>
@@ -362,12 +358,12 @@ namespace CybProjWeb.Migrations
                 {
                     b.HasOne("CybProjWeb.Entities.Department", "Department")
                         .WithMany()
-                        .HasForeignKey("DepartmentId");
+                        .HasForeignKey("DepartmentId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("CybProjWeb.Entities.Faculty", "Faculty")
                         .WithMany()
-                        .HasForeignKey("FacultyId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("FacultyId");
 
                     b.HasOne("CybProjWeb.Entities.Grade", "Grade")
                         .WithMany()

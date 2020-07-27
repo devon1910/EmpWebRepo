@@ -1,4 +1,11 @@
-﻿<!DOCTYPE html>
+﻿
+@using Microsoft.AspNetCore.Identity
+@using CybProjWeb.Entities
+@inject SignInManager<Account> SignInManager
+@inject UserManager<Account> UserManager
+
+
+<!DOCTYPE html>
 <html dir="ltr" lang="en">
 
 <head>
@@ -17,6 +24,8 @@
     <link href="~/assets/extra-libs/jvector/jquery-jvectormap-2.0.2.css" rel="stylesheet" />
     <!-- Custom CSS -->
     <link href="~/dist/css/style.min.css" rel="stylesheet">
+    <link href="~/sweetAlert/sweetalert.css" rel="stylesheet" />
+    <script src="~/sweetAlert/sweetalert.min.js"></script>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -54,7 +63,7 @@
                     <!-- Logo -->
                     <!-- ============================================================== -->
                     <div class="navbar-brand">
-                        <img src="~/assets/images/favicon.png"/>
+                        <img src="~/assets/images/favicon.png" />
                         <h3>Employee Web</h3><!--///////////ggtregy4hy4h5uy4h3hhyg54f-->
 
                     </div>
@@ -79,12 +88,11 @@
                     <!-- ============================================================== -->
                     <ul class="navbar-nav float-left mr-auto ml-3 pl-1">
                         <!-- Notification -->
-                        
                         <!-- End Notification -->
                         <!-- ============================================================== -->
                         <!-- create new -->
                         <!-- ============================================================== -->
-                        
+
                     </ul>
                     <!-- ============================================================== -->
                     <!-- Right side toggle and nav items -->
@@ -110,10 +118,9 @@
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="javascript:void(0)" data-toggle="dropdown"
                                aria-haspopup="true" aria-expanded="false">
-                                <img src="../assets/images/users/profile-pic.jpg" alt="user" class="rounded-circle"
-                                     width="40">
+                               
                                 <span class="ml-2 d-none d-lg-inline-block">
-                                    <span>Hello,</span> <span class="text-dark">Jason Doe</span> <i data-feather="chevron-down"
+                                    <span>Hello,</span> <span class="text-dark">@UserManager.GetUserName(User)</span> <i data-feather="chevron-down"
                                                                                                     class="svg-icon"></i>
                                 </span>
                             </a>
@@ -124,14 +131,19 @@
                                     My Profile
                                 </a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="javascript:void(0)">
+                                <a class="dropdown-item" asp-controller="Account" asp-action="login">
+                                    <i data-feather="user"
+                                       class="svg-icon mr-2 ml-1"></i>
+                                    Log in
+                                </a>
+                                <a class="dropdown-item" asp-controller="Account" asp-action="LogOut">
                                     <i data-feather="power"
                                        class="svg-icon mr-2 ml-1"></i>
                                     Logout
                                 </a>
                                 <div class="dropdown-divider"></div>
                                 <div class="pl-4 p-3">
-                                    
+
                                 </div>
                             </div>
                         </li>
@@ -174,7 +186,7 @@
                         <li class="sidebar-item">
                             <a asp-controller="Faculty" asp-action="Index" class="sidebar-link"
                                aria-expanded="false">
-                                <i  class="fas fa-industry"></i><span class="hide-menu">
+                                <i class="fas fa-industry"></i><span class="hide-menu">
                                     Faculty
                                 </span>
                             </a>
@@ -182,36 +194,74 @@
                         <li class="sidebar-item">
                             <a asp-controller="Grade" asp-action="Index" class="sidebar-link"
                                aria-expanded="false">
-                                <i  class="fas fa-level-up-alt"></i><span class="hide-menu">
+                                <i class="fas fa-level-up-alt"></i><span class="hide-menu">
                                     Grade
                                 </span>
                             </a>
                         </li>
+
+                        <!--SETUP SALARY-->
+
                         <li class="sidebar-item">
-                            <a asp-controller="Salary" asp-action="Index" class="sidebar-link"
+                            <a class="sidebar-link has-arrow" href="javascript:void(0)"
                                aria-expanded="false">
-                                <i  class="fas fa-money-bill-alt"></i><span class="hide-menu">
-                                    Salary
-                                </span>
+                                <i class="fas fa-money-bill-alt"></i><span class="hide-menu">Salary</span>
                             </a>
+                            <ul aria-expanded="false" class="collapse  first-level base-level-line">
+                                <li class="sidebar-item">
+                                    <a asp-controller="Salary" asp-action="Create" class="sidebar-link">
+                                        <span class="hide-menu">
+                                            Setup Salary
+                                        </span>
+                                    </a>
+                                </li>
+                                <li class="sidebar-item">
+                                    <a asp-controller="User" asp-action="Index" class="sidebar-link">
+                                        <span class="hide-menu">
+                                            List of Staff
+                                        </span>
+                                    </a>
+                                </li>
+                            </ul>
+                            
+
                         </li>
+
                         <li class="sidebar-item">
-                            <a asp-controller="User" asp-action="Index" class="sidebar-link"
+                            <a class="sidebar-link has-arrow" href="javascript:void(0)"
                                aria-expanded="false">
-                                <i class="fas fa-user"></i><span class="hide-menu">
-                                    User
-                                </span>
+                                <i class="fas fa-user"></i><span class="hide-menu">User</span>
                             </a>
+                            <ul aria-expanded="false" class="collapse  first-level base-level-line">
+                                <li class="sidebar-item">
+                                    <a asp-controller="User" asp-action="Create" class="sidebar-link">
+                                        <span class="hide-menu">
+                                            Setup User Profile
+                                        </span>
+                                    </a>
+                                </li>
+                            </ul>
                         </li>
+
                         <li class="sidebar-item">
-                            <a asp-controller="Account" asp-action="login" class="sidebar-link"
+                            <a class="sidebar-link has-arrow" href="javascript:void(0)"
                                aria-expanded="false">
-                                <i data-feather="power" class="feather-icon"></i><span class="hide-menu">
-                                    Login
-                                </span>
+                                <i class="fas fa-user"></i><span class="hide-menu">Admin</span>
                             </a>
+                            <ul aria-expanded="false" class="collapse  first-level base-level-line">
+                                <li class="sidebar-item">
+                                    <a asp-controller="Administration" asp-action="ListRoles" class="sidebar-link">
+                                        <span class="hide-menu">
+                                            ListRoles
+                                        </span>
+                                    </a>
+                                </li>
+                            </ul>
                         </li>
+
+
                         
+
                     </ul>
                 </nav>
                 <!-- End Sidebar navigation -->
@@ -231,23 +281,22 @@
             <div class="page-breadcrumb">
                 <div class="row">
                     <div class="col-7 align-self-center">
-                        <h3 class="page-title text-truncate text-dark font-weight-medium mb-1">Good Morning Jason!</h3>
-                        
+                        <h3 class="page-title text-truncate text-dark font-weight-medium mb-1">Good Day @UserManager.GetUserName(User)</h3>
+
                     </div>
-                    
+
                 </div>
             </div>
             <div>
-            <main role="main" class="pb-3">
-                @RenderBody()
-            </main>
+                <main role="main" class="pb-3">
+                    
+                    @RenderBody()
+                </main>
+            </div>
+
         </div>
 
-            </div>
-            
-        </div>
-    
-    
+    </div>
 
     <script src="~/assets/libs/jquery/dist/jquery.min.js"></script>
     <script src="~/assets/libs/popper.js/dist/umd/popper.min.js"></script>
@@ -269,9 +318,7 @@
     <script src="~/assets/extra-libs/jvector/jquery-jvectormap-world-mill-en.js"></script>
     <script src="~/dist/js/pages/dashboards/dashboard1.min.js"></script>
     @RenderSection("Scripts", required: false)
-    <footer class="footer text-center text-muted">
-       
-    </footer>
+    <footer class="footer text-center text-muted"></footer>
 </body>
 
 </html>
