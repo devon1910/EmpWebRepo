@@ -190,6 +190,11 @@ namespace CybProjWeb.Controllers
             return RedirectToAction("EditRole", new { Id = roleId });
         }
 
+        public IActionResult Cancel()
+        {
+            return RedirectToAction("ListRoles", "Administration");
+        }
+
     }
 
 }

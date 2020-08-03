@@ -24,6 +24,7 @@
                         <th scope="col">Step</th>
                         <th scope="col">PaymentItem</th>
                         <th scope="col">PaymentItem Type</th>
+                        <th scope="col">Amount</th>
                         <th scope="col"></th>
                         <th scope="col"></th>
                     </tr>
@@ -31,29 +32,29 @@
                 <tbody>
                     @foreach (var s in Model)
                     {
-                        <tr>
-                            <td scope="row">@s.Id</td>
-                            <td>@s.Grade.GradeName</td>
-                            <td>@s.Grade.Level</td>
-                            <td>@s.Grade.Step</td>
-                            <td>@s.PayItem</td>
-                            <td>@s.PayItemType</td>
-
-                            <td>
-                                <a asp-controller="Salary" asp-action="Edit" asp-route-id="@s.Id" class="sidebar-link"
-                                   aria-expanded="false">
-                                    <i class="fas fa-edit"></i><span class="hide-menu">
-                                    </span>
-                                </a>
-                            </td>
-                            <td>
-                                <a asp-controller="Salary" asp-action="Delete" asp-route-id="@s.Id" class="sidebar-link"
-                                   aria-expanded="false">
-                                    <i class="fas fa-trash-alt"></i><span class="hide-menu">
-                                    </span>
-                                </a>
-                            </td>
-                        </tr>
+                    <tr>
+                        <td scope="row">@s.Id</td>
+                        <td>@s.Grade.GradeName</td>
+                        <td>@s.Grade.Level</td>
+                        <td>@s.Grade.Step</td>
+                        <td>@s.PayItem</td>
+                        <td>@s.PayItemType</td>
+                        <td>@s.Amount</td>
+                        <td>
+                            <a asp-controller="Salary" asp-action="Edit" asp-route-id="@s.Id" class="sidebar-link"
+                               aria-expanded="false">
+                                <i class="fas fa-edit"></i><span class="hide-menu">
+                                </span>
+                            </a>
+                        </td>
+                        <td>
+                            <a asp-controller="Salary" asp-action="Delete" asp-route-id="@s.Id" class="sidebar-link"
+                               aria-expanded="false">
+                                <i class="fas fa-trash-alt"></i><span class="hide-menu">
+                                </span>
+                            </a>
+                        </td>
+                    </tr>
                     }
 
                 </tbody>

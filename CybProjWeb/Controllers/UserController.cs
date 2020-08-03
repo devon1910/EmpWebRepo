@@ -47,10 +47,12 @@ namespace CybProjWeb.Controllers
         public async Task<IActionResult> Create(User u)
         {
             var createUser = await _user.AddAsync(u);
-            
+            //two options for steph, using a fresh view or using the lga/state format
+           
             if (createUser)
             {
                 Alert("User created successfully.", NotificationType.success);
+              //  var steph = u.Grade.Level;
                 return RedirectToAction("Index","Home");
             }
             else

@@ -23,20 +23,20 @@
                 </div><br />
                 <div class="form-group mb-4">
                     <label for="exampleFormControlSelect1">Country</label>
-                    <select class="form-control" id="exampleFormControlSelect1" asp-for="Country" >
+                    <select class="form-control" id="exampleFormControlSelect1" asp-for="Country">
                         <option>Nigeria</option>
                     </select>
                 </div><br />
 
                 <div class="form-group mb-4">
                     <label for="exampleFormControlSelect1">State</label>
-                    <select class="form-control" id="StateId" asp-for="States" asp-items="@(new SelectList(ViewBag.state, "Id", "Name"))">
+                    <select class="form-control" id="StateId" asp-for="StateId" asp-items="@(new SelectList(ViewBag.state, "Id", "Name"))">
                         <option>Choose State</option>
                     </select>
                 </div><br />
                 <div class="form-group mb-4">
                     <label for="exampleFormControlSelect1">LGA</label>
-                    <select class="form-control" id="LGAId" asp-for="LGAs" asp-items="@(new SelectList(string.Empty, "Id", "Name"))"></select>
+                    <select class="form-control" id="LGAId" asp-for="LGAId" asp-items="@(new SelectList(string.Empty, "Id", "Name"))"></select>
                 </div><br />
                 <div class="form-group mb-4">
                     <label for="exampleFormControlSelect1">Department</label>
@@ -44,6 +44,13 @@
                         <option>Choose Option</option>
                     </select>
                 </div><br />
+                <div class="form-group mb-4">
+                    <label for="exampleFormControlSelect1">Faculty</label>
+                    <select class="form-control" id="exampleFormControlSelect1" asp-for="FacultyId" asp-items="@ViewBag.fac">
+                        <option>Choose Option</option>
+                    </select>
+                </div><br />
+
 
                 <div class="form-group mb-4">
                     <label for="exampleFormControlSelect1">Grade</label>
