@@ -14,7 +14,7 @@ namespace CybProjWeb.Entities
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         public int FacultyId { get; set; }
-        public int GradeId { get; set; }
+        
         public int DepartmentId { get; set; }
         public int StateId { get; set; }
         public int LGAId { get; set; }
@@ -22,13 +22,13 @@ namespace CybProjWeb.Entities
         public string LastName { get; set; }
         public string Email { get; set; }
         public string Country { get; set; }
-        //public string States{ get; set; }
-        //public string LGAs { get; set; } 
+       // public string States{ get; set; }
+       // public string LGAs { get; set; } 
         public State State { get; set; }
         public LGA LGA { get; set; } 
         public Faculty Faculty { get; set; }
         public Department Department { get; set; }
-        public Grade Grade { get; set; }
+        
         private DateTime? dateCreated = null;
         public DateTime DateCreated
         {

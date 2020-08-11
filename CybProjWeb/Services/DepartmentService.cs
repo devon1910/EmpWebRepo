@@ -72,6 +72,8 @@ namespace CybProjWeb.Services
             {
                 dep.DeptName = dept.DeptName;
                 dep.DeptCode = dept.DeptCode;
+                dep.FacultyId = dept.FacultyId;
+              //  dept.Faculty.FacultyName = dept.Faculty.FacultyName;
                
                 await _context.SaveChangesAsync();
                 return true;

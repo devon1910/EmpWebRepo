@@ -180,17 +180,55 @@ namespace CybProjWeb.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("Amount");
+                    b.Property<double>("BasicSalary");
 
                     b.Property<int>("GradeId");
 
-                    b.Property<string>("PayItem");
+                    b.Property<string>("GradeLevel");
 
-                    b.Property<string>("PayItemType");
+                    b.Property<string>("GradeName");
+
+                    b.Property<string>("GradeStep");
+
+                    b.Property<double>("GrossSalary");
+
+                    b.Property<double>("Housing");
+
+                    b.Property<string>("HousingItemType");
+
+                    b.Property<double>("HousingPercent");
+
+                    b.Property<double>("Lunch");
+
+                    b.Property<string>("LunchItemType");
+
+                    b.Property<double>("LunchPercent");
+
+                    b.Property<double>("Medical");
+
+                    b.Property<string>("MedicalItemType");
+
+                    b.Property<double>("MedicalPercent");
+
+                    b.Property<double>("NetSalary");
+
+                    b.Property<double>("Tax");
+
+                    b.Property<double>("TaxPercent");
+
+                    b.Property<double>("Transport");
+
+                    b.Property<string>("TransportItemType");
+
+                    b.Property<double>("TransportPercent");
+
+                    b.Property<int>("UserId");
 
                     b.HasKey("Id");
 
                     b.HasIndex("GradeId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Salaries");
                 });
@@ -226,21 +264,17 @@ namespace CybProjWeb.Migrations
 
                     b.Property<string>("FirstName");
 
-                    b.Property<int>("GradeId");
-
-                    b.Property<int>("LGAId");
+                    b.Property<int?>("LGAId");
 
                     b.Property<string>("LastName");
 
-                    b.Property<int>("StateId");
+                    b.Property<int?>("StateId");
 
                     b.HasKey("Id");
 
                     b.HasIndex("DepartmentId");
 
                     b.HasIndex("FacultyId");
-
-                    b.HasIndex("GradeId");
 
                     b.HasIndex("LGAId");
 
@@ -356,6 +390,11 @@ namespace CybProjWeb.Migrations
                         .WithMany()
                         .HasForeignKey("GradeId")
                         .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("CybProjWeb.Entities.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("CybProjWeb.Entities.User", b =>
@@ -369,20 +408,13 @@ namespace CybProjWeb.Migrations
                         .WithMany()
                         .HasForeignKey("FacultyId");
 
-                    b.HasOne("CybProjWeb.Entities.Grade", "Grade")
-                        .WithMany()
-                        .HasForeignKey("GradeId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
                     b.HasOne("CybProjWeb.Entities.LGA", "LGA")
                         .WithMany()
-                        .HasForeignKey("LGAId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("LGAId");
 
                     b.HasOne("CybProjWeb.Entities.State", "State")
                         .WithMany()
-                        .HasForeignKey("StateId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("StateId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

@@ -41,7 +41,7 @@
                                 </a>
                             </td>
                             <td>
-                                <a asp-controller="Faculty" asp-action="Delete" asp-route-id="@fac.Id" class="sidebar-link"
+                                <a asp-controller="Faculty"  onclick="return confirm('Are you sure you want to delete This record?')" asp-action="Delete" asp-route-id="@fac.Id" class="sidebar-link"
                                    aria-expanded="false">
                                     <i class="fas fa-trash-alt"></i><span class="hide-menu">
                                     </span>

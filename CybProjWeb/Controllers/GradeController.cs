@@ -11,7 +11,7 @@ using static CybProjWeb.Enums.Enum;
 
 namespace CybProjWeb.Controllers
 {
-    [Authorize(Roles = "Admin")]
+   // [Authorize(Roles = "Admin")]
     public class GradeController : BaseController
     {
         private IGrade _grade;

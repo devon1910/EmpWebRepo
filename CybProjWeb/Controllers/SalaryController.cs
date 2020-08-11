@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using CybProjWeb.Data;
 using CybProjWeb.Entities;
 using CybProjWeb.Inteface;
 using Microsoft.AspNetCore.Authorization;
@@ -12,19 +13,23 @@ using static CybProjWeb.Enums.Enum;
 
 namespace CybProjWeb.Controllers
 {
-    [Authorize(Roles = "Admin")]
+   // [Authorize(Roles = "Admin")]
     public class SalaryController : BaseController
     {
         private ISalary _sal;
         private IGrade _grade;
+        private IUser _user;
+        private EmployeeDataContext _context;
 
 
         private readonly UserManager<Account> _userManager;
-        public SalaryController(ISalary sal, IGrade grade, UserManager<Account> userManager)
+        public SalaryController(EmployeeDataContext context,ISalary sal, IGrade grade, IUser user, UserManager<Account> userManager)
         {
             _sal = sal;
             _grade = grade;
             _userManager = userManager;
+            _user = user;
+            _context = context;
 
         }
         [HttpGet]
@@ -37,20 +42,101 @@ namespace CybProjWeb.Controllers
             }
             return View();
         }
-
-        [HttpPost]
-        public async Task<IActionResult> Create(Salary s)
+        [HttpGet]
+        public async Task<IActionResult> PersonalSalary()
         {
-
-            //d.DateCreated = DateTime.Now;
-            var createSal = await _sal.AddAsync(s);
-            if (createSal)
+            var model = await _sal.GetAll();
+            if (model != null)
             {
-                // Alert("Book Created successfully.", NotificationType.success);
-                return RedirectToAction("Index");
+                return View(model);
             }
             return View();
         }
+
+        [HttpPost]
+        public async Task<IActionResult> Create(Salary salary)
+        {
+            //FOR HOUSING
+            salary.Housing = salary.HousingPercent * salary.BasicSalary / 100;
+            salary.GrossSalary = salary.BasicSalary;
+
+            if (salary.HousingItemType == "Allowance")
+            {
+
+                salary.GrossSalary += salary.Housing;
+            }
+            else if (salary.HousingItemType == "Deduction")
+            {
+                salary.GrossSalary -= salary.Housing;
+            }
+
+            //FOR LUNCH
+            salary.Lunch = salary.LunchPercent * salary.BasicSalary / 100;
+
+            if (salary.LunchItemType == "Allowance")
+            {
+
+                salary.GrossSalary += salary.Lunch;
+            }
+
+            else if (salary.LunchItemType == "Deduction")
+            {
+
+                salary.GrossSalary -= salary.Lunch;
+            }
+
+            //FOR TRANSPORT
+            salary.Transport = salary.TransportPercent * salary.BasicSalary / 100;
+
+            if (salary.TransportItemType == "Allowance")
+            {
+
+                salary.GrossSalary += salary.Transport;
+            }
+            else if (salary.TransportItemType == "Deduction")
+            {
+
+                salary.GrossSalary -= salary.Transport;
+            }
+
+            //FOR MEDICAL
+            salary.Medical = salary.MedicalPercent * salary.BasicSalary / 100;
+
+            if (salary.MedicalItemType == "Allowance")
+            {
+
+                salary.GrossSalary += salary.Medical;
+            }
+            else if (salary.MedicalItemType == "Deduction")
+            {
+
+                salary.GrossSalary -= salary.Medical;
+            }
+
+            //TOTAL SALARY
+            salary.Tax = salary.TaxPercent * salary.GrossSalary / 100;
+
+            salary.NetSalary = salary.GrossSalary - salary.Tax;
+
+            var grade = _context.Grade.First(n => n.Id == salary.GradeId);
+            salary.GradeName = grade.GradeName;
+            salary.GradeLevel = grade.Level;
+            salary.GradeStep = grade.Step;
+            //d.DateCreated = DateTime.Now;
+            var createSal = await _sal.AddAsync(salary);
+
+            if (salary != null)
+            {
+                Alert("UserProfile created successfully.", NotificationType.success);
+                return RedirectToAction("Index");
+            }
+            Alert("UserProfile not created!", NotificationType.error);
+            return View(salary);
+        }
+
+        
+       
+        
         [HttpGet]
         public async Task<IActionResult> Create()
         {
@@ -60,7 +146,7 @@ namespace CybProjWeb.Controllers
                 Value = g.Id.ToString(),
                 Text = g.GradeName
             });
-            var gradeLevel = await _grade.GetAll();
+           /* var gradeLevel = await _grade.GetAll();
             var gradeListLevel = gradeLevel.Select(g => new SelectListItem()
             {
                 Value = g.Id.ToString(),
@@ -71,11 +157,18 @@ namespace CybProjWeb.Controllers
             {
                 Value = g.Id.ToString(),
                 Text = g.Step
+            });*/
+            var user = await _user.GetAll();
+            var userList = user.Select(u => new SelectListItem()
+            {
+                Value = u.Id.ToString(),
+                Text = u.FirstName
             });
 
+            ViewBag.user = userList;
             ViewBag.gradeName = gradeListName;
-            ViewBag.gradeLevel = gradeListLevel;
-            ViewBag.gradeStep = gradeListStep;
+          //  ViewBag.gradeLevel = gradeListLevel;
+          //  ViewBag.gradeStep = gradeListStep;
 
             return View();
         }
@@ -99,38 +192,34 @@ namespace CybProjWeb.Controllers
         [HttpGet]
         public async Task<IActionResult> Edit(int id)
         {
-            var editGrade = await _grade.GetById(id);
+            var editSal = await _sal.GetById(id);
 
-            if (editGrade == null)
+            if (editSal == null)
             {
                 return RedirectToAction("Index");
             }
 
+            var user = await _user.GetAll();
+            var userList = user.Select(u => new SelectListItem()
+            {
+                Value = u.Id.ToString(),
+                Text = u.FirstName
+            });
             var gradeName = await _grade.GetAll();
             var FacListName = gradeName.Select(g => new SelectListItem()
             {
                 Value = g.Id.ToString(),
                 Text = g.GradeName
             });
-            var gradeLevel = await _grade.GetAll();
-            var FacListLevel = gradeLevel.Select(g => new SelectListItem()
-            {
-                Value = g.Id.ToString(),
-                Text = g.Level
-            });
-            var gradeStep = await _grade.GetAll();
-            var FacListStep = gradeStep.Select(g => new SelectListItem()
-            {
-                Value = g.Id.ToString(),
-                Text = g.Step
-            });
-
+            
             ViewBag.gradeName = FacListName;
-            ViewBag.gradeLevel = FacListLevel;
-            ViewBag.gradeStep = FacListStep;
+
+            ViewBag.user = userList;
+            // ViewBag.gradeLevel = FacListLevel;
+            //ViewBag.gradeStep = FacListStep;
 
             //return View();
-            return View(editGrade);
+            return View(editSal);
         }
 
         public async Task<IActionResult> Delete(int id)

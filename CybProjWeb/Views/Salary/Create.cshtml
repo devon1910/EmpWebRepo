@@ -2,59 +2,205 @@
 @{
     ViewData["Title"] = "Salary";
 }
-<div class="col-sm-12 col-md-6 col-lg-4">
-    <div class="card">
-        <div class="card-body">
-            <h4 class="card-title">Setup Salary</h4>
-            <form method="post" asp-action="Create" class="mt-4">
-                <div class="form-group mb-4">
-                    <label for="exampleFormControlSelect1">Grade</label>
-                    <select class="form-control" id="exampleFormControlSelect1" asp-for="GradeId" asp-items="@ViewBag.gradeName">
-                        <option>Choose Option</option>
-                    </select>
-                </div><br />
-                <div class="form-group mb-4">
-                    <label for="exampleFormControlSelect1">Level</label>
-                    <select class="form-control" id="exampleFormControlSelect1" asp-for="GradeId" asp-items="@ViewBag.gradeLevel">
-                        <option>Choose Option</option>
-                    </select>
-                </div><br />
-                <div class="form-group mb-4">
-                    <label for="exampleFormControlSelect1">Step</label>
-                    <select class="form-control" id="exampleFormControlSelect1" asp-for="GradeId" asp-items="@ViewBag.gradeStep">
-                        <option>Choose Option</option>
-                    </select>
-                </div><br />
-                <div class="form-group mb-4">
-                    <label for="exampleFormControlSelect1">Payment Item</label>
-                    <select class="form-control" id="exampleFormControlSelect1" asp-for="PayItem">
-                        <option>Housing</option>
-                        <option>Tax</option>
-                        <option>Basic Salary</option>
-                    </select>
-                </div><br />
-                <div class="form-group mb-4">
-                    <label for="exampleFormControlSelect1">Payment Item Type</label>
-                    <select class="form-control" id="exampleFormControlSelect1" asp-for="PayItemType">
-                        <option>Allowance</option>
-                        <option>Deduction</option>
 
-                    </select>
-                </div><br />
-                <div class="form-group mb-4">
-                    <label for="exampleFormControlSelect1">Amount</label>
-                    <select class="form-control" id="exampleFormControlSelect1" asp-for="Amount">
-                        <option>100000</option>
-                        <option>200000</option>
-                        <option>300000</option>
-                        <option>400000</option>
-                        <option>500000</option>
-                    </select>
-                </div><br />
-                <button type="submit" class="btn btn-rounded btn-outline-success">Submit</button>
-                <a href="Cancel" type="button" class="btn btn-rounded btn-outline-danger">Cancel</a>
-            </form>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <form method="post" asp-action="Create" class="mt-4">
+                        <div class="d-flex align-items-center mb-4">
+                            <h4 class="card-title">Employee Details</h4>
+                        </div>
 
+                        <div class="table-responsive">
+                            <table class="table no-wrap v-middle mb-0">
+                                <thead>
+                                    <tr class="border-0">
+                                        <th class="border-0 font-14 font-weight-medium text-muted">
+                                            Name
+                                        </th>
+                                        <th class="border-0 font-14 font-weight-medium text-muted px-2">
+                                            Grade
+                                        </th>
+
+                                        <th class="border-0 font-14 font-weight-medium text-muted text-center">
+                                            Basic Salary
+                                        </th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="border-top-0 px-2 py-4">
+                                            <div class="form-group mb-4">
+
+                                                <select class="form-control" id="exampleFormControlSelect1" asp-for="UserId" asp-items="@ViewBag.user">
+                                                    <option>Choose Option</option>
+                                                </select>
+                                            </div>
+                                        </td>
+                                        <td class="border-top-0 text-muted px-2 py-4 font-14">
+                                            <div class="form-group mb-4">
+
+                                                <select class="form-control" id="exampleFormControlSelect1" asp-for="GradeId" asp-items="@ViewBag.gradeName">
+                                                    <option>Choose Option</option>
+                                                </select>
+                                            </div>
+                                        </td>
+                                        <td class="border-top-0 px-2 py-4">
+                                            <div class="form-group">
+                                                <input type="text" asp-for="BasicSalary" class="form-control" id="name" placeholder="Enter Basic Salary" required="">
+                                                <span asp-validation-for="BasicSalary" class="text-danger"></span>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <!--SALARY BREAKDOWN-->
+
+
+                        <div class="d-flex align-items-center mb-4">
+                            <h4 class="card-title">Salary Breakdown</h4>
+                        </div>
+
+                        <div class="table-responsive">
+                            <table class="table no-wrap v-middle mb-0">
+                                <thead>
+                                    <tr class="border-0">
+                                        <th class="border-0 font-14 font-weight-medium text-muted">
+                                            PayItem
+                                        </th>
+                                        <th class="border-0 font-14 font-weight-medium text-muted px-2">
+                                            Percentage(%)
+                                        </th>
+
+                                        <th class="border-0 font-14 font-weight-medium text-muted text-center">
+                                            PayItem Type
+                                        </th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <label for="Housing">Housing</label>
+                                        </td>
+
+                                        <td>
+                                            <div class="form-group">
+                                                <input type="text" asp-for="HousingPercent" class="form-control" id="name" placeholder="Enter Housing rate" required="">
+                                                <span asp-validation-for="HousingPercent" class="text-danger"></span>
+                                            </div>
+                                        </td>
+                                        <td>
+
+                                            <div class="form-group">
+                                                <select class="form-control" asp-for="@Model.HousingItemType">
+                                                    <option value="Allowance">Allowance</option>
+                                                    <option value="Deduction">Deduction</option>
+                                                </select>
+                                            </div>
+                                        </td>
+
+                                    </tr>
+
+                                    <tr>
+                                        <td>
+                                            <label for="Lunch">Lunch</label>
+
+                                        <td>
+                                            <div class="form-group">
+                                                <input type="text" asp-for="LunchPercent" class="form-control" id="name" placeholder="Enter Lunch rate" required="">
+                                                <span asp-validation-for="LunchPercent" class="text-danger"></span>
+                                            </div>
+                                        </td>
+                                        <td>
+
+                                            <div class="form-group">
+                                                <select class="form-control" asp-for="@Model.LunchItemType">
+
+                                                    <option value="Allowance">Allowance</option>
+                                                    <option value="Deduction">Deduction</option>
+                                                </select>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>
+                                            <label for="Transport">Transport</label>
+                                        </td>
+
+                                        <td>
+                                            <div class="form-group">
+                                                <input type="text" asp-for="TransportPercent" class="form-control" id="name" placeholder="Enter Transport rate" required="">
+                                                <span asp-validation-for="TransportPercent" class="text-danger"></span>
+                                            </div>
+                                        </td>
+                                        <td>
+
+                                            <div class="form-group">
+                                                <select class="form-control" asp-for="@Model.TransportItemType">
+
+                                                    <option value="Allowance">Allowance</option>
+                                                    <option value="Deduction">Deduction</option>
+                                                </select>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>
+                                            <label for="Medical">Medical</label>
+                                        </td>
+
+                                        <td>
+                                            <div class="form-group">
+                                                <input type="text" asp-for="MedicalPercent" class="form-control" id="name" placeholder="Enter Medical rate" required="">
+                                                <span asp-validation-for="MedicalPercent" class="text-danger"></span>
+                                            </div>
+                                        </td>
+                                        <td>
+
+                                            <div class="form-group">
+                                                <select class="form-control" asp-for="@Model.MedicalItemType">
+
+                                                    <option value="Allowance">Allowance</option>
+                                                    <option value="Deduction">Deduction</option>
+                                                </select>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Tax </td>
+                                        <td>
+                                            <div class="form-group">
+                                                <input type="text" asp-for="TaxPercent" class="form-control" id="name" placeholder="Enter Tax rate" required="">
+                                                <span asp-validation-for="TaxPercent" class="text-danger"></span>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <button type="submit" asp-action="Create" class="btn btn-rounded btn-outline-success">Compute</button>
+                                        </td>
+                                        <td>
+                                            <a href="Cancel" type="button" class="btn btn-rounded btn-outline-danger">Cancel</a>
+
+                                        </td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                       
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
 </div>

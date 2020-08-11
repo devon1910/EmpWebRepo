@@ -27,17 +27,16 @@
                         <option>Nigeria</option>
                     </select>
                 </div><br />
-
-                <div class="form-group mb-4">
-                    <label for="exampleFormControlSelect1">State</label>
-                    <select class="form-control" id="StateId" asp-for="StateId" asp-items="@(new SelectList(ViewBag.state, "Id", "Name"))">
-                        <option>Choose State</option>
-                    </select>
-                </div><br />
-                <div class="form-group mb-4">
-                    <label for="exampleFormControlSelect1">LGA</label>
-                    <select class="form-control" id="LGAId" asp-for="LGAId" asp-items="@(new SelectList(string.Empty, "Id", "Name"))"></select>
-                </div><br />
+                 <div class="form-group mb-4">
+            <label for="exampleFormControlSelect1">State</label>
+            <select class="form-control" id="StateId" asp-for="StateId" asp-items="@(new SelectList(ViewBag.state, "Id", "Name"))">
+                <option>Choose State</option>
+            </select>
+        </div><br />
+        <div class="form-group mb-4">
+            <label for="exampleFormControlSelect1">LGA</label>
+            <select class="form-control" id="LGAId" asp-for="LGAId" asp-items="@(new SelectList(string.Empty, "Id", "Name"))"></select>
+        </div><br />
                 <div class="form-group mb-4">
                     <label for="exampleFormControlSelect1">Department</label>
                     <select class="form-control" id="exampleFormControlSelect1" asp-for="DepartmentId" asp-items="@ViewBag.dept">
@@ -45,31 +44,14 @@
                     </select>
                 </div><br />
                 <div class="form-group mb-4">
-                    <label for="exampleFormControlSelect1">Faculty</label>
-                    <select class="form-control" id="exampleFormControlSelect1" asp-for="FacultyId" asp-items="@ViewBag.fac">
-                        <option>Choose Option</option>
-                    </select>
-                </div><br />
+            <label for="exampleFormControlSelect1">Faculty</label>
+            <select class="form-control" id="exampleFormControlSelect1" asp-for="FacultyId" asp-items="@ViewBag.fac">
+                <option>Choose Option</option>
+            </select>
+        </div>    <br />
 
 
-                <div class="form-group mb-4">
-                    <label for="exampleFormControlSelect1">Grade</label>
-                    <select class="form-control" id="exampleFormControlSelect1" asp-for="GradeId" asp-items="@ViewBag.gradeName">
-                        <option>Choose Option</option>
-                    </select>
-                </div><br />
-                <div class="form-group mb-4">
-                    <label for="exampleFormControlSelect1">Grade Level</label>
-                    <select class="form-control" id="exampleFormControlSelect1" asp-for="GradeId" asp-items="@ViewBag.gradeLevel">
-                        <option>Choose Option</option>
-                    </select>
-                </div><br />
-                <div class="form-group mb-4">
-                    <label for="exampleFormControlSelect1">Grade Step</label>
-                    <select class="form-control" id="exampleFormControlSelect1" asp-for="GradeId" asp-items="@ViewBag.gradeStep">
-                        <option>Choose Option</option>
-                    </select>
-                </div><br />
+
                 <button type="submit" class="btn btn-rounded btn-outline-success">Submit</button>
                 <a href="Cancel" type="button" class="btn btn-rounded btn-outline-danger">Cancel</a>
             </form>

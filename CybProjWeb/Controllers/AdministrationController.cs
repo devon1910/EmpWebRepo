@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CybProjWeb.Controllers
 {
-    [Authorize(Roles = "Admin")]
+    //[Authorize(Roles = "Admin")]
     public class AdministrationController : BaseController
     {
         private readonly RoleManager<Role> roleManager;

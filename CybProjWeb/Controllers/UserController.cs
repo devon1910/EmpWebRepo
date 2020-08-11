@@ -13,7 +13,7 @@ using static CybProjWeb.Enums.Enum;
 
 namespace CybProjWeb.Controllers
 {
-    [Authorize(Roles = "User")]
+    //[Authorize(Roles = "User")]
     public class UserController : BaseController
     {
         private EmployeeDataContext _context;
@@ -48,12 +48,13 @@ namespace CybProjWeb.Controllers
         {
             var createUser = await _user.AddAsync(u);
             //two options for steph, using a fresh view or using the lga/state format
-           
+           // var t = u.StateId;
+           // var d = u.LGAId;
             if (createUser)
             {
                 Alert("User created successfully.", NotificationType.success);
               //  var steph = u.Grade.Level;
-                return RedirectToAction("Index","Home");
+                return RedirectToAction("Index","User");
             }
             else
             {
@@ -74,8 +75,6 @@ namespace CybProjWeb.Controllers
             //var lga = _context.LGAs.ToList();
 
             
-            //
-            //
 
             var deptList = dept.Select(d => new SelectListItem()
             {
@@ -87,7 +86,7 @@ namespace CybProjWeb.Controllers
                 Value = f.Id.ToString(),
                 Text = f.FacultyName
             });
-            var gradeListName = gradeName.Select(g => new SelectListItem()
+           /* var gradeListName = gradeName.Select(g => new SelectListItem()
             {
                 Value = g.Id.ToString(),
                 Text = g.GradeName
@@ -101,12 +100,12 @@ namespace CybProjWeb.Controllers
             {
                 Value = g.Id.ToString(),
                 Text = g.Step
-            });
+            });*/
            // ViewBag.lga = lgaList;
             ViewBag.state = _context.States.ToList();
-            ViewBag.gradeName = gradeListName;
-            ViewBag.gradeLevel = gradeListLevel;
-            ViewBag.gradeStep = gradeListStep;
+           // ViewBag.gradeName = gradeListName;
+           // ViewBag.gradeLevel = gradeListLevel;
+           // ViewBag.gradeStep = gradeListStep;
             ViewBag.dept = deptList;
             ViewBag.fac = facList;
            

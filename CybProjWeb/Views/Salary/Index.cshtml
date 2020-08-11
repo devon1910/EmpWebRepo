@@ -19,12 +19,17 @@
                 <thead class="thead-light">
                     <tr>
                         <th scope="col">#</th>
+                        <th scope="col">Name</th>
                         <th scope="col">Grade</th>
-                        <th scope="col">level</th>
-                        <th scope="col">Step</th>
-                        <th scope="col">PaymentItem</th>
-                        <th scope="col">PaymentItem Type</th>
-                        <th scope="col">Amount</th>
+                        <th scope="col">Basic Salary(N)</th>
+                        <th scope="col">Housing(N)</th>
+                        <th scope="col">Medical(N)</th>
+                        <th scope="col">Lunch(N)</th>
+                        <th scope="col">Transport(N)</th>
+                        <th scope="col">Gross Salary(N)</th>
+                        <th scope="col">Tax(N)</th>
+                        <th scope="col">Net Salary(N)</th>
+
                         <th scope="col"></th>
                         <th scope="col"></th>
                     </tr>
@@ -34,12 +39,16 @@
                     {
                     <tr>
                         <td scope="row">@s.Id</td>
+                        <td>@s.User.FirstName</td>
                         <td>@s.Grade.GradeName</td>
-                        <td>@s.Grade.Level</td>
-                        <td>@s.Grade.Step</td>
-                        <td>@s.PayItem</td>
-                        <td>@s.PayItemType</td>
-                        <td>@s.Amount</td>
+                        <td>@s.BasicSalary</td>
+                        <td>@s.Housing</td>
+                        <td>@s.Medical</td>
+                        <td>@s.Lunch</td>
+                        <td>@s.Transport</td>
+                        <td>@s.GrossSalary</td>
+                        <td>@s.Tax</td>
+                        <td>@s.NetSalary</td>
                         <td>
                             <a asp-controller="Salary" asp-action="Edit" asp-route-id="@s.Id" class="sidebar-link"
                                aria-expanded="false">
@@ -48,7 +57,7 @@
                             </a>
                         </td>
                         <td>
-                            <a asp-controller="Salary" asp-action="Delete" asp-route-id="@s.Id" class="sidebar-link"
+                            <a asp-controller="Salary"  onclick="return confirm('Are you sure you want to delete This record?')" asp-action="Delete" asp-route-id="@s.Id" class="sidebar-link"
                                aria-expanded="false">
                                 <i class="fas fa-trash-alt"></i><span class="hide-menu">
                                 </span>
