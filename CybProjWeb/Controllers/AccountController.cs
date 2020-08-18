@@ -10,7 +10,7 @@ using CybProjWeb.Inteface;
 using CybProjWeb.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using static CybProjWeb.Enums.Enum;
+using CybProjWeb.Enums;
 
 namespace CybProjWeb.Controllers
 {
@@ -35,7 +35,7 @@ namespace CybProjWeb.Controllers
         }
         public IActionResult Login()
         {
-            ViewBag.role = _context.Roless.ToList();
+           // ViewBag.role = _context.Roless.ToList();
             return View();
         }
 
@@ -44,7 +44,7 @@ namespace CybProjWeb.Controllers
         {
             if (!ModelState.IsValid)
             {
-               // Alert("Login Unsuccesful!", NotificationType.error);
+                Alert("Login Unsuccesful!", NotificationType.error);
                 ModelState.AddModelError("", "UserName/Password is incorrect");
                 return View();
             }
@@ -60,7 +60,7 @@ namespace CybProjWeb.Controllers
             if (signin)
             {
                 
-               // Alert("Login successful.", NotificationType.success);
+                Alert("Login successful.", NotificationType.success);
                 return RedirectToAction("Index", "Home");
             }
             return View();

@@ -27,7 +27,7 @@ namespace CybProjWeb.Services
         {
             try
             {
-              //  var d = user.StateId;
+                
                 await _context.AddAsync(user);
                 await _context.SaveChangesAsync();
             }
@@ -55,8 +55,7 @@ namespace CybProjWeb.Services
 
         public async Task<IEnumerable<User>> GetAll()
         {
-            return await _context.EmpUsers.Include(d => d.Department).Include(f => f.Faculty).Include(s => s.State).Include(l => l.LGA).ToListAsync();
-
+            return await _context.EmpUsers.Include(d => d.Department).Include(g => g.Grade).Include(a => a.Account).Include(s => s.State).Include(l => l.LGA).ToListAsync();
         }
 
         public async Task<User> GetById(int Id)
@@ -75,7 +74,7 @@ namespace CybProjWeb.Services
                // user.GradeId = u.GradeId;
                // user.FacultyId = u.FacultyId;
                 user.DepartmentId = u.DepartmentId;
-                user.Email = user.Email;
+               // user.Email = user.Email;
                 
               //  user.States = user.States;
                // user.LGAs = user.LGAs;

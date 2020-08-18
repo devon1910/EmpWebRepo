@@ -1,6 +1,6 @@
 ﻿@model CybProjWeb.Entities.User
 @{
-   // ViewData["Title"] = "Create";
+    ViewData["Title"] = "Create";
 }
 
 <div class="col-sm-12 col-md-6 col-lg-4">
@@ -11,15 +11,17 @@
 
                 <div class="form-group">
                     <input type="text" class="form-control" id="placeholder"
-                           placeholder="FirstName" asp-for="FirstName">
+                           placeholder="FirstName" asp-for="FirstName" required>
                 </div><br />
                 <div class="form-group">
                     <input type="text" class="form-control" id="placeholder"
-                           placeholder="LastName" asp-for="LastName">
+                           placeholder="LastName" asp-for="LastName" required>
                 </div><br />
-                <div class="form-group">
-                    <input type="email" class="form-control" id="placeholder"
-                           placeholder="Email" asp-for="Email">
+                <div class="form-group mb-4">
+                    <label for="exampleFormControlSelect1">Account</label>
+                    <select class="form-control" id="exampleFormControlSelect1" asp-for="AccountId" asp-items="@ViewBag.users">
+                        <option>Choose Account</option>
+                    </select>
                 </div><br />
                 <div class="form-group mb-4">
                     <label for="exampleFormControlSelect1">Country</label>
@@ -27,31 +29,28 @@
                         <option>Nigeria</option>
                     </select>
                 </div><br />
-                 <div class="form-group mb-4">
-            <label for="exampleFormControlSelect1">State</label>
-            <select class="form-control" id="StateId" asp-for="StateId" asp-items="@(new SelectList(ViewBag.state, "Id", "Name"))">
-                <option>Choose State</option>
-            </select>
-        </div><br />
-        <div class="form-group mb-4">
-            <label for="exampleFormControlSelect1">LGA</label>
-            <select class="form-control" id="LGAId" asp-for="LGAId" asp-items="@(new SelectList(string.Empty, "Id", "Name"))"></select>
-        </div><br />
                 <div class="form-group mb-4">
-                    <label for="exampleFormControlSelect1">Department</label>
-                    <select class="form-control" id="exampleFormControlSelect1" asp-for="DepartmentId" asp-items="@ViewBag.dept">
-                        <option>Choose Option</option>
+                    <label for="exampleFormControlSelect1">State</label>
+                    <select class="form-control" id="StateId" asp-for="StateId" asp-items="@(new SelectList(ViewBag.state, "Id", "Name"))">
+                        <option>Choose State</option>
                     </select>
                 </div><br />
                 <div class="form-group mb-4">
-            <label for="exampleFormControlSelect1">Faculty</label>
-            <select class="form-control" id="exampleFormControlSelect1" asp-for="FacultyId" asp-items="@ViewBag.fac">
-                <option>Choose Option</option>
-            </select>
-        </div>    <br />
-
-
-
+                    <label for="exampleFormControlSelect1">LGA</label>
+                    <select class="form-control" id="LGAId" asp-for="LGAId" asp-items="@(new SelectList(string.Empty, "Id", "Name"))"></select>
+                </div><br />
+                <div class="form-group mb-4">
+                    <label for="exampleFormControlSelect1">Department</label>
+                    <select class="form-control" id="exampleFormControlSelect1" asp-for="DepartmentId" asp-items="@ViewBag.dept">
+                        <option>Choose Department</option>
+                    </select>
+                </div><br />
+                <div class="form-group mb-4">
+                    <label for="exampleFormControlSelect1">Grade</label>
+                    <select class="form-control" id="exampleFormControlSelect1" asp-for="GradeId" asp-items="@ViewBag.grade">
+                        <option>Choose Grade</option>
+                    </select>
+                </div>    <br />
                 <button type="submit" class="btn btn-rounded btn-outline-success">Submit</button>
                 <a href="Cancel" type="button" class="btn btn-rounded btn-outline-danger">Cancel</a>
             </form>

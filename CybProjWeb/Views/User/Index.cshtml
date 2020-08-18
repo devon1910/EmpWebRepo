@@ -26,8 +26,11 @@
                         <th scope="col">State</th>
                         <th scope="col">LGA</th>
                         <th scope="col">Department</th>
-                        <th scope="col">Faculty</th>
-                        
+                        <th scope="col">Grade</th>
+                        <th scope="col">Basic Salary</th>
+                        <th scope="col">Gross Salary</th>
+                        <th scope="col">Net Salary</th>
+
                         <th scope="col"></th>
                         <th scope="col"></th>
                     </tr>
@@ -39,13 +42,15 @@
                         <td scope="row">@u.Id</td>
                         <td>@u.FirstName</td>
                         <td>@u.LastName</td>
-                        <td>@u.Email</td>
+                        <td>@u.Account.Email</td>
                         <td>@u.Country</td>
                         <td>@u.State.Name</td>
                         <td>@u.LGA.Name</td>
                         <td>@u.Department.DeptName</td>
-                        <td>@u.Faculty.FacultyName</td>
-
+                        <td>@u.Grade.GradeName</td>
+                        <td>@u.BasicSalary</td>
+                        <td>@u.GrossSalary</td>
+                        <td>@u.NetSalary</td>
                         <td>
                             <a asp-controller="User" asp-action="Edit" asp-route-id="@u.Id" class="sidebar-link"
                                aria-expanded="false">

@@ -5,14 +5,12 @@ using System.Threading.Tasks;
 
 namespace CybProjWeb.Enums
 {
-    public class Enum
-    {
-        public enum NotificationType
+       public enum NotificationType
         {
             error,
             success,
             warning,
             info
         }
-    }
+   
 }

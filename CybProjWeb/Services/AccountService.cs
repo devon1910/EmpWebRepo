@@ -57,13 +57,10 @@ namespace CybProjWeb.Services
             try
             {
                 var checkmail = await _userManager.FindByEmailAsync(user.Email);
-                
                 if (checkmail == null)
                 {
                     var signUpResult = await _userManager.CreateAsync(user, password);
-                    //var role = user.RoleName;
-                    //var newRole = await _roleManager.CreateAsync(user.Role);
-                    
+
                     if (signUpResult.Succeeded)
                     {
                         return true;
@@ -77,7 +74,7 @@ namespace CybProjWeb.Services
             }
 
         }
-        
+       
 
     }
 }

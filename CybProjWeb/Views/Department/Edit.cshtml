@@ -9,16 +9,18 @@
             <form method="post" asp-action="Edit" class="mt-4">
                 <div class="form-group">
                     <input type="text" class="form-control" id="placeholder"
-                           placeholder="Name" asp-for="DeptName">
+                           placeholder="Name" asp-for="DeptName" required>
+                    <span asp-validation-for="DeptName"></span>
                 </div><br />
-                <div class="form-group">
-                    <input type="text" class="form-control" id="placeholder"
-                           placeholder="Code" asp-for="DeptCode">
-                </div><br />
+                      <div class="form-group">
+                          <input type="text" class="form-control" id="placeholder"
+                                 placeholder="Code" asp-for="DeptCode" required>
+                          <span asp-validation-for="DeptCode"></span>
+                      </div><br />
                 <div class="form-group mb-4">
                     <label for="exampleFormControlSelect1">Grade</label>
                     <select class="form-control" id="exampleFormControlSelect1" asp-for="FacultyId" asp-items="@ViewBag.fac">
-                        <option>Choose Option</option>
+                        <option>Choose Faculty</option>
                     </select>
                 </div><br />
                 <button type="submit" class="btn btn-rounded btn-outline-success">Submit</button>

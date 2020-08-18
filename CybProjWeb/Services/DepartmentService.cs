@@ -25,16 +25,25 @@ namespace CybProjWeb.Services
         }
         public async Task<bool> AddAsync(Department dept)
         {
-            try
+            var existingdeptCount = _context.Departments.Count(d => d.DeptName == dept.DeptName);
+            if (existingdeptCount == 0)
             {
-                await _context.AddAsync(dept);
-                await _context.SaveChangesAsync();
+                // Do your insert
+                try
+                {
+                    await _context.AddAsync(dept);
+                    await _context.SaveChangesAsync();
+                    return true;
+                }
+                catch (Exception e)
+                {
+                    return false;
+                }
+
             }
-            catch (Exception)
-            {
-                return false;
-            }
-            return true;
+            
+
+            return false;
         }
 
         public async Task<bool> Delete(int Id)

@@ -6,7 +6,7 @@ using CybProjWeb.Entities;
 using CybProjWeb.Inteface;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using static CybProjWeb.Enums.Enum;
+using CybProjWeb.Enums;
 
 namespace CybProjWeb.Controllers
 {

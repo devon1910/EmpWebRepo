@@ -23,7 +23,10 @@
                             <div class="form-group">
                                 <label class="text-dark" for="uname"></label>
                                 <input class="form-control" id="uname" type="email" asp-for="Email"
-                                       placeholder="Email">
+                                       placeholder="Email" required>
+                                <span asp-validation-for="Email" ></span>
+                                
+
                             </div>
                         </div><br />
                         
@@ -31,7 +34,8 @@
                             <div class="form-group">
                                 <label class="text-dark" for="pwd"></label>
                                 <input class="form-control" id="pwd" type="password" asp-for="Password"
-                                       placeholder="enter your password">
+                                       placeholder="Enter password" required>
+                                <span asp-validation-for="Password"></span>
                             </div>
                         </div>
                         <div class="col-lg-12 text-center">

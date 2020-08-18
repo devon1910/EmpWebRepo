@@ -70,8 +70,8 @@ namespace CybProjWeb.Services
             if (g != null)
             {
                 g.GradeName = grade.GradeName;
-                g.Level= grade.Level;
-                g.Step = grade.Step;
+                g.GradeLevel= grade.GradeLevel;
+                g.GradeStep = grade.GradeStep;
 
                 await _context.SaveChangesAsync();
                 return true;

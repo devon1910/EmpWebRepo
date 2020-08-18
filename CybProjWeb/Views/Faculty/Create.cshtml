@@ -9,12 +9,14 @@
             <form method="post" asp-action="Create" class="mt-4">
                 <div class="form-group">
                     <input type="text" class="form-control" id="placeholder"
-                           placeholder="Name" asp-for="FacultyName">
+                           placeholder="Name" asp-for="FacultyName" required>
+                    <span asp-validation-for="FacultyName"></span>
                 </div><br />
-                <div class="form-group">
-                    <input type="text" class="form-control" id="placeholder"
-                           placeholder="Code" asp-for="FacultyCode">
-                </div><br />
+                      <div class="form-group">
+                          <input type="text" class="form-control" id="placeholder"
+                                 placeholder="Code" asp-for="FacultyCode" required>
+                          <span asp-validation-for="FacultyCode"></span>
+                      </div><br />
                 <button type="submit" class="btn btn-rounded btn-outline-success">Submit</button>
                 <a href="Cancel" type="button" class="btn btn-rounded btn-outline-danger">Cancel</a>
 

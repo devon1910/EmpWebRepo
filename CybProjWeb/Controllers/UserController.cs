@@ -9,7 +9,8 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using static CybProjWeb.Enums.Enum;
+using CybProjWeb.Enums;
+using Microsoft.AspNetCore.Identity;
 
 namespace CybProjWeb.Controllers
 {
@@ -19,13 +20,13 @@ namespace CybProjWeb.Controllers
         private EmployeeDataContext _context;
         private IUser _user;
         private IDepartment _dept;
-        private IFaculty _fac;
+        private readonly RoleManager<Role> roleManager;
         private IGrade _grade;
        // private IState _state;
-        public UserController(IUser user, IDepartment dept, IFaculty fac, IGrade grade,EmployeeDataContext context)
+        public UserController(IUser user, IDepartment dept, IGrade grade, RoleManager<Role> roleM, EmployeeDataContext context)
         {
             _dept = dept;
-            _fac = fac;
+            roleManager = roleM;
             _user = user;
             _context = context;
             _grade = grade;
@@ -37,7 +38,28 @@ namespace CybProjWeb.Controllers
             
             if (model != null)
             {
-                ViewBag.state = _context.States.ToList();
+                
+                return View(model);
+            }
+            return View();
+        }
+        public async Task<IActionResult> PersonalSalary()
+        {
+            var model = await _user.GetAll();
+            if (model != null)
+            {
+                return View(model);
+            }
+            return View();
+        }
+
+        public async Task<IActionResult> ViewProfile()
+        {
+            var model = await _user.GetAll();
+            
+            if (model != null)
+            {
+                //ViewBag.state = _context.States.ToList();
                 return View(model);
             }
             return View();
@@ -46,14 +68,31 @@ namespace CybProjWeb.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(User u)
         {
+            var grade = _context.Grade.First(n => n.Id == u.GradeId);
+            u.GradeName = grade.GradeName;
+            u.GradeLevel = grade.GradeLevel;
+            u.GradeStep = grade.GradeStep;
+            u.Housing = grade.Housing;
+            u.HousingItemType = grade.HousingItemType;
+            u.Lunch = grade.Lunch;
+            u.LunchItemType = grade.LunchItemType;
+            u.Medical = grade.Medical;
+            u.MedicalItemType = grade.MedicalItemType;
+            u.Transport = grade.Transport;
+            u.TransportItemType = grade.TransportItemType;
+            u.Tax = grade.Tax;
+            u.BasicSalary = grade.BasicSalary;
+            u.GrossSalary= grade.GrossSalary;
+            u.NetSalary = grade.NetSalary;
+
             var createUser = await _user.AddAsync(u);
-            //two options for steph, using a fresh view or using the lga/state format
-           // var t = u.StateId;
-           // var d = u.LGAId;
+
+           
             if (createUser)
             {
+                
                 Alert("User created successfully.", NotificationType.success);
-              //  var steph = u.Grade.Level;
+              
                 return RedirectToAction("Index","User");
             }
             else
@@ -67,48 +106,43 @@ namespace CybProjWeb.Controllers
         public async Task<IActionResult> Create()
         {
             var dept = await _dept.GetAll();
-            var fac = await _fac.GetAll();
+          
             var gradeName = await _grade.GetAll();
-            var gradeLevel = await _grade.GetAll();
-            var gradeStep = await _grade.GetAll();
-            
-            //var lga = _context.LGAs.ToList();
 
-            
+            var EmailList = _context.EmpUsers.Select(q => q.Account.Email).ToList();
+            var users = _context.Users.Where(u => !EmailList.Contains(u.Email)).ToList();
+
+            var usersList = users.Select(u => new SelectListItem()
+            {
+                Value = u.Id.ToString(),
+                Text = u.Email
+            });
+
 
             var deptList = dept.Select(d => new SelectListItem()
             {
                 Value = d.Id.ToString(),
                 Text = d.DeptName
             });
-            var facList = fac.Select(f => new SelectListItem()
+            var gradeList = gradeName.Select(d => new SelectListItem()
             {
-                Value = f.Id.ToString(),
-                Text = f.FacultyName
+                Value = d.Id.ToString(),
+                Text = d.GradeName
             });
-           /* var gradeListName = gradeName.Select(g => new SelectListItem()
-            {
-                Value = g.Id.ToString(),
-                Text = g.GradeName
-            });
-            var gradeListLevel = gradeLevel.Select(g => new SelectListItem()
-            {
-                Value = g.Id.ToString(),
-                Text = g.Level
-            });
-            var gradeListStep = gradeStep.Select(g => new SelectListItem()
-            {
-                Value = g.Id.ToString(),
-                Text = g.Step
-            });*/
-           // ViewBag.lga = lgaList;
+
+
+            ///dropdown of unregistered users
+          /// var EmailList = _context.EmpUsers.Select(q => q.Email).ToList();
+           //var temp = _context.Users.Where(u => !EmailList.Contains(u.Email));
+
+            //ViewBag.emails = temp.ToList();
+
+            ViewBag.grade = gradeList;
             ViewBag.state = _context.States.ToList();
-           // ViewBag.gradeName = gradeListName;
-           // ViewBag.gradeLevel = gradeListLevel;
-           // ViewBag.gradeStep = gradeListStep;
             ViewBag.dept = deptList;
-            ViewBag.fac = facList;
-           
+            ViewBag.users = usersList;
+
+
             return View();
         }
 

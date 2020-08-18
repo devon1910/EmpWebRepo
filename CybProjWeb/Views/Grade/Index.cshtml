@@ -22,6 +22,14 @@
                         <th scope="col">Name</th>
                         <th scope="col">Level</th>
                         <th scope="col">Step</th>
+                        <th scope="col">Basic Salary(N)</th>
+                        <th scope="col">Housing(N)</th>
+                        <th scope="col">Medical(N)</th>
+                        <th scope="col">Lunch(N)</th>
+                        <th scope="col">Transport(N)</th>
+                        <th scope="col">Gross Salary(N)</th>
+                        <th scope="col">Tax(N)</th>
+                        <th scope="col">Net Salary(N)</th>
                         <th scope="col"></th>
                         <th scope="col"></th>
                     </tr>
@@ -29,27 +37,35 @@
                 <tbody>
                     @foreach (var g in Model)
                     {
-                        <tr>
-                            <td scope="row">@g.Id</td>
-                            <td>@g.GradeName</td>
-                            <td>@g.Level</td>
-                            <td>@g.Step</td>
+                    <tr>
+                        <td scope="row">@g.Id</td>
+                        <td>@g.GradeName</td>
+                        <td>@g.GradeLevel</td>
+                        <td>@g.GradeStep</td>
+                        <td>@g.BasicSalary</td>
+                        <td>@g.Housing</td>
+                        <td>@g.Medical</td>
+                        <td>@g.Lunch</td>
+                        <td>@g.Transport</td>
+                        <td>@g.GrossSalary</td>
+                        <td>@g.Tax</td>
+                        <td>@g.NetSalary</td>
 
-                            <td>
-                                <a asp-controller="Grade" asp-action="Edit" asp-route-id="@g.Id" class="sidebar-link"
-                                   aria-expanded="false">
-                                    <i class="fas fa-edit"></i><span class="hide-menu">
-                                    </span>
-                                </a>
-                            </td>
-                            <td>
-                                <a asp-controller="Grade"   onclick="return confirm('Are you sure you want to delete This record?')" asp-action="Delete" asp-route-id="@g.Id" class="sidebar-link"
-                                   aria-expanded="false">
-                                    <i class="fas fa-trash-alt"></i><span class="hide-menu">
-                                    </span>
-                                </a>
-                            </td>
-                        </tr>
+                        <td>
+                            <a asp-controller="Grade" asp-action="Edit" asp-route-id="@g.Id" class="sidebar-link"
+                               aria-expanded="false">
+                                <i class="fas fa-edit"></i><span class="hide-menu">
+                                </span>
+                            </a>
+                        </td>
+                        <td>
+                            <a asp-controller="Grade" onclick="return confirm('Are you sure you want to delete This record?')" asp-action="Delete" asp-route-id="@g.Id" class="sidebar-link"
+                               aria-expanded="false">
+                                <i class="fas fa-trash-alt"></i><span class="hide-menu">
+                                </span>
+                            </a>
+                        </td>
+                    </tr>
                     }
 
                 </tbody>

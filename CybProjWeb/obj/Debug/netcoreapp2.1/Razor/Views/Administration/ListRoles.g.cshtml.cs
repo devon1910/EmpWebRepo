@@ -73,7 +73,7 @@ using CybProjWeb.Models;
             WriteLiteral("    <div class=\"col-5 align-self-center\">\r\n        <div class=\"customize-input float-right\">\r\n            ");
             EndContext();
             BeginContext(219, 111, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "2f1291e23b4c43779990b6074997fef4", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "682645a01909410485cf4b4a3c04e3ad", async() => {
                 BeginContext(311, 15, true);
                 WriteLiteral("Create new Role");
                 EndContext();
@@ -139,7 +139,7 @@ using CybProjWeb.Models;
             WriteLiteral("</td>\r\n                    <td>");
             EndContext();
             BeginContext(830, 125, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "f60085df9a234b1cbbcfb163a1aa9f94", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "7b57842afd8f48a4a9b5349a70275b58", async() => {
                 BeginContext(947, 4, true);
                 WriteLiteral("Edit");
                 EndContext();

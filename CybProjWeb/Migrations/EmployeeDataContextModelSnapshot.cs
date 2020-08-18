@@ -84,7 +84,7 @@ namespace CybProjWeb.Migrations
 
                     b.Property<DateTime>("DateCreated");
 
-                    b.Property<int>("DeptCode");
+                    b.Property<string>("DeptCode");
 
                     b.Property<string>("DeptName");
 
@@ -105,7 +105,7 @@ namespace CybProjWeb.Migrations
 
                     b.Property<DateTime>("DateCreated");
 
-                    b.Property<int>("FacultyCode");
+                    b.Property<string>("FacultyCode");
 
                     b.Property<string>("FacultyName");
 
@@ -120,13 +120,49 @@ namespace CybProjWeb.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<double>("BasicSalary");
+
+                    b.Property<string>("CreatedBy");
+
                     b.Property<DateTime>("DateCreated");
+
+                    b.Property<int>("GradeLevel");
 
                     b.Property<string>("GradeName");
 
-                    b.Property<string>("Level");
+                    b.Property<int>("GradeStep");
 
-                    b.Property<string>("Step");
+                    b.Property<double>("GrossSalary");
+
+                    b.Property<double>("Housing");
+
+                    b.Property<string>("HousingItemType");
+
+                    b.Property<double>("HousingPercent");
+
+                    b.Property<double>("Lunch");
+
+                    b.Property<string>("LunchItemType");
+
+                    b.Property<double>("LunchPercent");
+
+                    b.Property<double>("Medical");
+
+                    b.Property<string>("MedicalItemType");
+
+                    b.Property<double>("MedicalPercent");
+
+                    b.Property<double>("NetSalary");
+
+                    b.Property<double>("Tax");
+
+                    b.Property<double>("TaxPercent");
+
+                    b.Property<double>("Transport");
+
+                    b.Property<string>("TransportItemType");
+
+                    b.Property<double>("TransportPercent");
 
                     b.HasKey("Id");
 
@@ -174,65 +210,6 @@ namespace CybProjWeb.Migrations
                     b.ToTable("AspNetRoles");
                 });
 
-            modelBuilder.Entity("CybProjWeb.Entities.Salary", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<double>("BasicSalary");
-
-                    b.Property<int>("GradeId");
-
-                    b.Property<string>("GradeLevel");
-
-                    b.Property<string>("GradeName");
-
-                    b.Property<string>("GradeStep");
-
-                    b.Property<double>("GrossSalary");
-
-                    b.Property<double>("Housing");
-
-                    b.Property<string>("HousingItemType");
-
-                    b.Property<double>("HousingPercent");
-
-                    b.Property<double>("Lunch");
-
-                    b.Property<string>("LunchItemType");
-
-                    b.Property<double>("LunchPercent");
-
-                    b.Property<double>("Medical");
-
-                    b.Property<string>("MedicalItemType");
-
-                    b.Property<double>("MedicalPercent");
-
-                    b.Property<double>("NetSalary");
-
-                    b.Property<double>("Tax");
-
-                    b.Property<double>("TaxPercent");
-
-                    b.Property<double>("Transport");
-
-                    b.Property<string>("TransportItemType");
-
-                    b.Property<double>("TransportPercent");
-
-                    b.Property<int>("UserId");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("GradeId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("Salaries");
-                });
-
             modelBuilder.Entity("CybProjWeb.Entities.State", b =>
                 {
                     b.Property<int>("Id")
@@ -252,29 +229,61 @@ namespace CybProjWeb.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("AccountId");
+
+                    b.Property<double>("BasicSalary");
+
                     b.Property<string>("Country");
 
                     b.Property<DateTime>("DateCreated");
 
                     b.Property<int>("DepartmentId");
 
-                    b.Property<string>("Email");
-
-                    b.Property<int?>("FacultyId");
-
                     b.Property<string>("FirstName");
 
-                    b.Property<int?>("LGAId");
+                    b.Property<int>("GradeId");
+
+                    b.Property<int>("GradeLevel");
+
+                    b.Property<string>("GradeName");
+
+                    b.Property<int>("GradeStep");
+
+                    b.Property<double>("GrossSalary");
+
+                    b.Property<double>("Housing");
+
+                    b.Property<string>("HousingItemType");
+
+                    b.Property<int>("LGAId");
 
                     b.Property<string>("LastName");
 
-                    b.Property<int?>("StateId");
+                    b.Property<double>("Lunch");
+
+                    b.Property<string>("LunchItemType");
+
+                    b.Property<double>("Medical");
+
+                    b.Property<string>("MedicalItemType");
+
+                    b.Property<double>("NetSalary");
+
+                    b.Property<int>("StateId");
+
+                    b.Property<double>("Tax");
+
+                    b.Property<double>("Transport");
+
+                    b.Property<string>("TransportItemType");
 
                     b.HasKey("Id");
 
+                    b.HasIndex("AccountId");
+
                     b.HasIndex("DepartmentId");
 
-                    b.HasIndex("FacultyId");
+                    b.HasIndex("GradeId");
 
                     b.HasIndex("LGAId");
 
@@ -384,37 +393,31 @@ namespace CybProjWeb.Migrations
                         .HasForeignKey("StateId");
                 });
 
-            modelBuilder.Entity("CybProjWeb.Entities.Salary", b =>
-                {
-                    b.HasOne("CybProjWeb.Entities.Grade", "Grade")
-                        .WithMany()
-                        .HasForeignKey("GradeId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("CybProjWeb.Entities.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
             modelBuilder.Entity("CybProjWeb.Entities.User", b =>
                 {
+                    b.HasOne("CybProjWeb.Entities.Account", "Account")
+                        .WithMany()
+                        .HasForeignKey("AccountId");
+
                     b.HasOne("CybProjWeb.Entities.Department", "Department")
                         .WithMany()
                         .HasForeignKey("DepartmentId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("CybProjWeb.Entities.Faculty", "Faculty")
+                    b.HasOne("CybProjWeb.Entities.Grade", "Grade")
                         .WithMany()
-                        .HasForeignKey("FacultyId");
+                        .HasForeignKey("GradeId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("CybProjWeb.Entities.LGA", "LGA")
                         .WithMany()
-                        .HasForeignKey("LGAId");
+                        .HasForeignKey("LGAId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("CybProjWeb.Entities.State", "State")
                         .WithMany()
-                        .HasForeignKey("StateId");
+                        .HasForeignKey("StateId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

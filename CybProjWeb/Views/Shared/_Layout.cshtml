@@ -26,6 +26,7 @@
     <link href="~/dist/css/style.min.css" rel="stylesheet">
     <link href="~/sweetAlert/sweetalert.css" rel="stylesheet" />
     <script src="~/sweetAlert/sweetalert.min.js"></script>
+    <script src="~/sweetAlert/sweetalert-dev.js"></script>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -124,27 +125,57 @@
                                                                                                     class="svg-icon"></i>
                                 </span>
                             </a>
-                            <div class="dropdown-menu dropdown-menu-right user-dd animated flipInY">
-                                <a class="dropdown-item" href="javascript:void(0)">
-                                    <i data-feather="user"
-                                       class="svg-icon mr-2 ml-1"></i>
-                                    My Profile
-                                </a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" asp-controller="Account" asp-action="login">
-                                    <i data-feather="user"
-                                       class="svg-icon mr-2 ml-1"></i>
-                                    Log in
-                                </a>
-                                <a class="dropdown-item" asp-controller="Account" asp-action="LogOut">
-                                    <i data-feather="power"
-                                       class="svg-icon mr-2 ml-1"></i>
-                                    Logout
-                                </a>
-                                <div class="dropdown-divider"></div>
-                                <div class="pl-4 p-3">
 
-                                </div>
+                            <div class="dropdown-menu dropdown-menu-right user-dd animated flipInY">
+                                @if (SignInManager.IsSignedIn(User) && User.IsInRole("Admin"))
+                                {
+                                    <a class="dropdown-item" href="javascript:void(0)">
+                                        <i data-feather="user"
+                                           class="svg-icon mr-2 ml-1"></i>
+                                        View Profile
+                                    </a>
+                                    <div class="dropdown-divider"></div>
+
+                                    <a class="dropdown-item" asp-controller="Account" asp-action="LogOut">
+                                        <i data-feather="power"
+                                           class="svg-icon mr-2 ml-1"></i>
+                                        Logout
+                                    </a>
+                                    <div class="dropdown-divider"></div>
+                                    <div class="pl-4 p-3">
+
+                                    </div>
+                                }
+                                else if (SignInManager.IsSignedIn(User) && User.IsInRole("User"))
+
+                                {
+                                    <a class="dropdown-item" asp-controller="User" asp-action="ViewProfile">
+                                        <i data-feather="user"
+                                           class="svg-icon mr-2 ml-1"></i>
+                                        View Profile
+                                    </a>
+                                    <div class="dropdown-divider"></div>
+
+                                    <a class="dropdown-item" asp-controller="Account" asp-action="LogOut">
+                                        <i data-feather="power"
+                                           class="svg-icon mr-2 ml-1"></i>
+                                        Logout
+                                    </a>
+                                    <div class="dropdown-divider"></div>
+                                    <div class="pl-4 p-3">
+
+                                    </div>
+                                }
+                                else
+                                {
+                                    <a class="dropdown-item" asp-controller="Account" asp-action="Login">
+                                        <i data-feather="user"
+                                           class="svg-icon mr-2 ml-1"></i>
+                                        Login
+                                    </a>
+
+                                }
+
                             </div>
                         </li>
                         <!-- ============================================================== -->
@@ -258,32 +289,33 @@
                             </li>
 
 
-                            <li class="sidebar-item">
-                                <a class="sidebar-link has-arrow" href="javascript:void(0)"
-                                   aria-expanded="false">
-                                    <i class="fas fa-money-bill-alt"></i><span class="hide-menu">Salary</span>
-                                </a>
-                                <ul aria-expanded="false" class="collapse  first-level base-level-line">
-                                    <li class="sidebar-item">
-                                        <a asp-controller="Salary" asp-action="Create" class="sidebar-link">
-                                            <span class="hide-menu">
-                                                Compute Salary
-                                            </span>
-                                        </a>
-                                    </li>
-                                    <li class="sidebar-item">
-                                        <a asp-controller="Salary" asp-action="Index" class="sidebar-link">
-                                            <span class="hide-menu">
-                                                List of Salaries
-                                            </span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-
+                            @*<li class="sidebar-item">
+                <a class="sidebar-link has-arrow" href="javascript:void(0)"
+                   aria-expanded="false">
+                    <i class="fas fa-money-bill-alt"></i><span class="hide-menu">Salary</span>
+                </a>
+                <ul aria-expanded="false" class="collapse  first-level base-level-line">
+                    <li class="sidebar-item">
+                        <a asp-controller="Salary" asp-action="Create" class="sidebar-link">
+                            <span class="hide-menu">
+                                Compute Salary
+                            </span>
+                        </a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a asp-controller="Salary" asp-action="Index" class="sidebar-link">
+                            <span class="hide-menu">
+                                List of Salaries
+                            </span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+                            *@
 
                         }
                         else if (SignInManager.IsSignedIn(User) && User.IsInRole("User"))
+
                         {
                             <li class="sidebar-item">
                                 <a class="sidebar-link has-arrow" href="javascript:void(0)"
@@ -292,7 +324,7 @@
                                 </a>
                                 <ul aria-expanded="false" class="collapse  first-level base-level-line">
                                     <li class="sidebar-item">
-                                        <a asp-controller="Salary" asp-action="PersonalSalary" class="sidebar-link">
+                                        <a asp-controller="User" asp-action="PersonalSalary" class="sidebar-link">
                                             <span class="hide-menu">
                                                 View Salary Structure
                                             </span>
@@ -332,7 +364,7 @@
             </div>
             <div>
                 <main role="main" class="pb-3">
-                    
+                    <partial name="_NotificationPanel" />
                     @RenderBody()
                 </main>
             </div>
