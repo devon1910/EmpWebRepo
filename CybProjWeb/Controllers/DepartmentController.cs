@@ -53,7 +53,7 @@ namespace CybProjWeb.Controllers
             }
             else
             {
-                Alert("Department Created unsuccessfully, Name already exists or bad data entered", NotificationType.error);
+                Alert("Department Not Created, Name already exists or bad data entered", NotificationType.error);
             }
             return View();
             

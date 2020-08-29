@@ -23,18 +23,27 @@ namespace CybProjWeb.Services
             _context.Add(g);
             _context.SaveChanges();
         }
-        public async Task<bool> AddAsync(Grade g)
+        public async Task<bool> AddAsync(Grade grade)
         {
-            try
+          //  var existingGradeCount = _context.Grade.Count(g => g.GradeName == grade.GradeName);
+            var existingGradeCount= _context.Grade.Count(g => g.GradeStep == grade.GradeStep && g.GradeLevel==grade.GradeLevel &&g.GradeName==grade.GradeName);
+         //   var existingGradeCountLevel = _context.Grade.Count(g => g.GradeLevel == grade.GradeLevel);
+
+            if (existingGradeCount == 0)
             {
-                await _context.AddAsync(g);
-                await _context.SaveChangesAsync();
+                try
+                {
+                    await _context.AddAsync(grade);
+                    await _context.SaveChangesAsync();
+                    return true;
+                }
+                catch (Exception)
+                {
+                    return false;
+                }
+               
             }
-            catch (Exception)
-            {
-                return false;
-            }
-            return true;
+            return false;
         }
 
         public async Task<bool> Delete(int Id)

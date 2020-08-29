@@ -25,8 +25,12 @@ namespace CybProjWeb.Services
         }
         public async Task<bool> AddAsync(Department dept)
         {
+            //var existingdeptCount = _context.Departments.Contains(dept);
+
             var existingdeptCount = _context.Departments.Count(d => d.DeptName == dept.DeptName);
-            if (existingdeptCount == 0)
+            var existingdeptCodeCount = _context.Departments.Count(d => d.DeptCode == dept.DeptCode);
+
+            if (existingdeptCount == 0 && existingdeptCodeCount==0)
             {
                 // Do your insert
                 try
@@ -39,6 +43,8 @@ namespace CybProjWeb.Services
                 {
                     return false;
                 }
+                /*var existingdeptCount = _context.Departments.Count(
+                d => d.DeptName == dept.deptName);*/
 
             }
             

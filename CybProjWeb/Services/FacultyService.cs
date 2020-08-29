@@ -25,16 +25,21 @@ namespace CybProjWeb.Services
         }
         public async Task<bool> AddAsync(Faculty fac)
         {
-            try
+            var existingfacCount = _context.Faculties.Count(f => f.FacultyName == fac.FacultyName);
+            if (existingfacCount == 0)
             {
-                await _context.AddAsync(fac);
-                await _context.SaveChangesAsync();
+                try
+                {
+                    await _context.AddAsync(fac);
+                    await _context.SaveChangesAsync();
+                    return true;
+                }
+                catch (Exception)
+                {
+                    return false;
+                }
             }
-            catch (Exception)
-            {
-                return false;
-            }
-            return true;
+            return false;
         }
 
         public async Task<bool> Delete(int Id)

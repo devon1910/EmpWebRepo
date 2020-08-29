@@ -11,6 +11,7 @@ using CybProjWeb.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using CybProjWeb.Enums;
+using Microsoft.Extensions.Logging;
 
 namespace CybProjWeb.Controllers
 {
@@ -21,15 +22,18 @@ namespace CybProjWeb.Controllers
         
         private readonly SignInManager<Account> _signInManager;
         private readonly UserManager<Account> _userManager;
-        
+        private readonly ILogger<AccountController> logger;
 
-        public AccountController(IAccount account, SignInManager<Account> signInManager,UserManager<Account> userManager, EmployeeDataContext context)
+
+        public AccountController(IAccount account, ILogger<AccountController> Logger, SignInManager<Account> signInManager,UserManager<Account> userManager, EmployeeDataContext context)
         {
            // _roleManager = roleManager;
             _account = account;
             _signInManager = signInManager;
             _userManager = userManager;
-            _context= context;
+            logger = Logger;
+
+            _context = context;
 
 
         }
@@ -56,14 +60,18 @@ namespace CybProjWeb.Controllers
 
 
             var signin = await _account.LoginIn(login);
-            
+
             if (signin)
             {
-                
+
                 Alert("Login successful.", NotificationType.success);
                 return RedirectToAction("Index", "Home");
             }
-            return View();
+            else
+            {
+                Alert("incorrect username or password", NotificationType.error);
+                return View();
+            }
         }
         
 
@@ -89,13 +97,17 @@ namespace CybProjWeb.Controllers
                     //Alert("Account Created successfully.", NotificationType.success);
                     return RedirectToAction("login", "Account");
               }
+            else
+            {
+                Alert("Invalid Password or username", NotificationType.error);
+            }
               return View();
           }
 
         [HttpGet]
         public  IActionResult SignUp()
         {
-            ViewBag.role = _context.Roless.ToList();
+           // ViewBag.role = _context.Roless.ToList();
             return View();
         }
 
@@ -105,7 +117,34 @@ namespace CybProjWeb.Controllers
             await _signInManager.SignOutAsync();
             return RedirectToAction("Login", "Account");
         }
-        
+        [HttpGet]
+        public IActionResult ForgetPassword()
+        {
+            return View();
+        }
+        [HttpPost]
+        public async Task<IActionResult> ForgetPassword(ForgetPasswordViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = await _userManager.FindByEmailAsync(model.Email);
+                if (user != null && await _userManager.IsEmailConfirmedAsync(user))
+                {
+                    var token = await _userManager.GeneratePasswordResetTokenAsync(user);
+                    var passwordResetLink = Url.Action("ResetPassword", "Account",
+                        new { email = model.Email, token = token }, Request.Scheme);
+                    logger.Log(LogLevel.Warning, passwordResetLink);
+                    Alert("User Edited successfully.", NotificationType.success);
+                    return RedirectToAction("login", "Account");
+                }
+               
+                Alert("A token has been successfully sent to your email", NotificationType.success);
+                return RedirectToAction("login","Account");
+            }
+            return View(model);
+                
+        }
+
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });

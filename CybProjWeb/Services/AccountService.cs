@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Policy;
 using System.Threading.Tasks;
 using CybProjWeb.Entities;
 using CybProjWeb.Inteface;
 using CybProjWeb.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
 
 namespace CybProjWeb.Services
 {
@@ -14,16 +16,17 @@ namespace CybProjWeb.Services
     {
         private readonly SignInManager<Account> _signInManager;
         private readonly UserManager<Account> _userManager;
-       
+       // private readonly ILogger<AccountService> _logger;
+
         private IConfiguration _config;
         public AccountService(SignInManager<Account> signInManager,
                                 UserManager<Account> userManager,
-                                
+                                 
         IConfiguration config)
         {
             _signInManager = signInManager;
             _userManager = userManager;
-           
+            //_logger = logger;
             _config = config;
         }
         public async Task<bool> LoginIn(LoginViewModel loginDetails)
@@ -63,6 +66,7 @@ namespace CybProjWeb.Services
 
                     if (signUpResult.Succeeded)
                     {
+                       
                         return true;
                     }
                 }

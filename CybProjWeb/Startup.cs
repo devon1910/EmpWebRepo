@@ -47,7 +47,8 @@ namespace CybProjWeb
                 .AddUserManager<UserManager<Account>>()
                 .AddRoleManager<RoleManager<Role>>()
                 .AddSignInManager<SignInManager<Account>>()
-                .AddEntityFrameworkStores<EmployeeDataContext>();
+                .AddEntityFrameworkStores<EmployeeDataContext>()
+                .AddDefaultTokenProviders();
 
 
             services.AddScoped<IFaculty, FacultyService>();

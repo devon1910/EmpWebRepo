@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using CybProjWeb.Data;
 using CybProjWeb.Entities;
+using CybProjWeb.Models;
 using CybProjWeb.Inteface;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -21,12 +22,16 @@ namespace CybProjWeb.Controllers
         private IUser _user;
         private IDepartment _dept;
         private readonly RoleManager<Role> roleManager;
+        private readonly UserManager<Account> userManager;
+        private readonly SignInManager<Account> signInManager;
         private IGrade _grade;
        // private IState _state;
-        public UserController(IUser user, IDepartment dept, IGrade grade, RoleManager<Role> roleM, EmployeeDataContext context)
+        public UserController(IUser user, IDepartment dept, IGrade grade, RoleManager<Role> roleM, UserManager<Account> userM, SignInManager<Account>signInM, EmployeeDataContext context)
         {
             _dept = dept;
             roleManager = roleM;
+            userManager = userM;
+            signInManager = signInM;
             _user = user;
             _context = context;
             _grade = grade;
@@ -160,6 +165,37 @@ namespace CybProjWeb.Controllers
                 Alert("User not Deleted!", NotificationType.error);
             }
             return View();
+        }
+
+        [HttpGet]
+        public IActionResult ChangePassword()
+        {
+            return View();
+        }
+        [HttpPost]
+        public async Task<IActionResult> ChangePassword(ChangePasswordViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = await userManager.GetUserAsync(User);
+                if (user == null)
+                {
+                    return RedirectToAction("login","Account");
+                }
+
+                var result =await userManager.ChangePasswordAsync(user, model.CurrentPassword, model.NewPassword);
+                if (!result.Succeeded)
+                {
+                    foreach (var error in result.Errors)
+                    {
+                        ModelState.AddModelError(string.Empty, error.Description);
+                    }
+                    return View();
+                }
+                await signInManager.RefreshSignInAsync(user);
+                return RedirectToAction("login", "Account");
+            }
+            return View(model);
         }
 
         [HttpPost]

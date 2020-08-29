@@ -16,13 +16,14 @@
                 <img src="../assets/images/big/icon.png" alt="wrapkit">
                 <h2 class="mt-3 text-center">Sign Up for Free</h2>
                 <form class="mt-4" method="POST" asp-action="SignUp">
+                    <div asp-validation-summary="All" class="text-danger"></div>
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="form-group">
                                 <input class="form-control" type="text" placeholder="Username" asp-for="Username" required>
                             </div>
                         </div><br />
-                        
+
                         <div class="col-lg-12">
                             <div class="form-group">
                                 <input class="form-control" type="Email" placeholder="Email address" asp-for="Email" required>

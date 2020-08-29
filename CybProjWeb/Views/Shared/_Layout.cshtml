@@ -1,5 +1,4 @@
-﻿
-@using Microsoft.AspNetCore.Identity
+﻿@using Microsoft.AspNetCore.Identity
 @using CybProjWeb.Entities
 @inject SignInManager<Account> SignInManager
 @inject UserManager<Account> UserManager
@@ -119,10 +118,10 @@
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="javascript:void(0)" data-toggle="dropdown"
                                aria-haspopup="true" aria-expanded="false">
-                               
+
                                 <span class="ml-2 d-none d-lg-inline-block">
                                     <span>Hello,</span> <span class="text-dark">@UserManager.GetUserName(User)</span> <i data-feather="chevron-down"
-                                                                                                    class="svg-icon"></i>
+                                                                                                                         class="svg-icon"></i>
                                 </span>
                             </a>
 
@@ -290,27 +289,27 @@
 
 
                             @*<li class="sidebar-item">
-                <a class="sidebar-link has-arrow" href="javascript:void(0)"
-                   aria-expanded="false">
-                    <i class="fas fa-money-bill-alt"></i><span class="hide-menu">Salary</span>
-                </a>
-                <ul aria-expanded="false" class="collapse  first-level base-level-line">
-                    <li class="sidebar-item">
-                        <a asp-controller="Salary" asp-action="Create" class="sidebar-link">
-                            <span class="hide-menu">
-                                Compute Salary
-                            </span>
-                        </a>
-                    </li>
-                    <li class="sidebar-item">
-                        <a asp-controller="Salary" asp-action="Index" class="sidebar-link">
-                            <span class="hide-menu">
-                                List of Salaries
-                            </span>
-                        </a>
-                    </li>
-                </ul>
-            </li>
+                                    <a class="sidebar-link has-arrow" href="javascript:void(0)"
+                                       aria-expanded="false">
+                                        <i class="fas fa-money-bill-alt"></i><span class="hide-menu">Salary</span>
+                                    </a>
+                                    <ul aria-expanded="false" class="collapse  first-level base-level-line">
+                                        <li class="sidebar-item">
+                                            <a asp-controller="Salary" asp-action="Create" class="sidebar-link">
+                                                <span class="hide-menu">
+                                                    Compute Salary
+                                                </span>
+                                            </a>
+                                        </li>
+                                        <li class="sidebar-item">
+                                            <a asp-controller="Salary" asp-action="Index" class="sidebar-link">
+                                                <span class="hide-menu">
+                                                    List of Salaries
+                                                </span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
                             *@
 
                         }
@@ -362,9 +361,12 @@
 
                 </div>
             </div>
-            <div>
+            <!-- Main JS-->
+            
+            <div class="container">
+                <partial name="_CookieConsentPartial" />
+                <partial name="_NotificationPanel" />
                 <main role="main" class="pb-3">
-                    <partial name="_NotificationPanel" />
                     @RenderBody()
                 </main>
             </div>
